@@ -768,6 +768,33 @@ export default function Home() {
       {/* Client-only ExperienceSection loaded dynamically to avoid SSR/CSR mismatch */}
       <ExperienceSection experiences={experiences} />
 
+      <section id="resume" className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
+              Resume
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
+              Download my resume
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
+              Want a PDF copy? Click the button below to download my resume.
+            </p>
+            <div className="mt-8">
+              <a
+                href="/Hasibul_Haque_Resume.pdf"
+                download
+                className="inline-flex items-center gap-3 rounded-2xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-indigo-600/30 transition hover:-translate-y-0.5 hover:bg-indigo-500"
+                aria-label="Download resume PDF"
+              >
+                Download resume
+                <FiArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="contact" className="relative py-24">
         <div className="container mx-auto px-6">
           <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/80 p-10 text-center shadow-2xl shadow-indigo-100/80 backdrop-blur dark:border-white/10 dark:bg-slate-900/60 dark:shadow-none">

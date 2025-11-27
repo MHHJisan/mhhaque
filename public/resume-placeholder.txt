@@ -1,0 +1,1 @@
+This is a placeholder for resume.pdf. Replace this file with your actual resume PDF named resume.pdf in the public directory.
