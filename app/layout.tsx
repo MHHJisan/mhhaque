@@ -20,15 +20,7 @@ export const metadata: Metadata = {
     "typescript",
   ],
   authors: [{ name: "Mh Haque" }],
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
-  ],
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
+  // themeColor and viewport moved to correct exports below
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -43,6 +35,13 @@ export const metadata: Metadata = {
     description: "Personal portfolio of Mh Haque - Web Developer & Designer",
     creator: "@yourtwitter",
   },
+};
+
+// Next.js viewport export
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -64,7 +63,17 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <meta name="theme-color" content="#3b82f6" />
+        {/* theme-color can be set here or with CSS variables */}
+        <meta
+          name="theme-color"
+          content="#f8fafc"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#0f172a"
+          media="(prefers-color-scheme: dark)"
+        />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         {children}
