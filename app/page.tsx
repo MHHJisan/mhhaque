@@ -334,6 +334,57 @@ const experiences: Experience[] = [
   },
 ];
 
+const awards = [
+  {
+    id: 1,
+    title: "Certified Kubernetes Administrator",
+    issuer: "Cloud Native Computing Foundation",
+    year: "2022",
+    link: "https://www.cncf.io/",
+  },
+  {
+    id: 2,
+    title: "AWS Certified Solutions Architect — Associate",
+    issuer: "Amazon Web Services",
+    year: "2021",
+    link: "https://aws.amazon.com/certification/",
+  },
+  {
+    id: 3,
+    title: "Frontend Developer Nanodegree",
+    issuer: "Udacity",
+    year: "2020",
+    link: "https://www.udacity.com/",
+  },
+];
+
+const volunteering = [
+  {
+    id: 1,
+    title: "Chief of Volunteer & Fundraising Manager",
+    period: "June 2021 — Present",
+    organization: "CPFINT.ORG (Companigonj Probashi Foundation)",
+    link: "https://www.cpfint.org",
+    emoji: "🏆",
+    details: [
+      "Strategically managed and coordinated volunteer activities for the organization.",
+      "Successfully led fundraising initiatives and campaigns to support the foundation's projects (as IT Officer and Treasurer, June 2020 – Oct 2021).",
+      "Applied a goal-oriented and proactive approach to expanding the foundation's reach and impact.",
+    ],
+  },
+  {
+    id: 2,
+    title: "Volunteer",
+    period: "Apr 2015 — Present",
+    organization: "We. Foundation",
+    link: "https://www.facebook.com/groups/902085893250334",
+    emoji: "🤝",
+    details: [
+      "Contributed to various charitable and non-profit initiatives, demonstrating a long-term commitment to community service and philanthropic goals.",
+    ],
+  },
+];
+
 const socialLinks: SocialLink[] = [
   {
     id: 1,
@@ -767,6 +818,121 @@ export default function Home() {
 
       {/* Client-only ExperienceSection loaded dynamically to avoid SSR/CSR mismatch */}
       <ExperienceSection experiences={experiences} />
+
+      <section id="awards" className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
+              Awards & Certifications
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
+              Selected recognitions and certificates
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
+              A selection of certifications and awards that reflect recent
+              training and achievements.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {awards.map((a) => (
+              <div
+                key={a.id}
+                className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 text-left shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"
+              >
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                  {a.title}
+                </h3>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-300">
+                  {a.issuer}
+                </p>
+                <p className="mt-1 text-xs text-slate-400">{a.year}</p>
+                {a.link && (
+                  <a
+                    href={a.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
+                    View
+                    <FiArrowRight className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="volunteering" className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="inline-flex items-center gap-3">
+              <span className="text-2xl">🌱</span>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
+                Volunteering & Top Management Experiences
+              </p>
+            </div>
+            <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
+              Community leadership & volunteer roles
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
+              Selected volunteer roles and management-level contributions.
+            </p>
+          </div>
+
+          <div className="mt-10 space-y-6">
+            {volunteering.map((v) => (
+              <div
+                key={v.id}
+                className="flex gap-4 items-start rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-md hover:shadow-xl transition dark:border-white/10 dark:bg-white/5"
+              >
+                <div className="shrink-0">
+                  <div className="h-14 w-14 rounded-full bg-linear-to-br from-indigo-500 to-cyan-400 flex items-center justify-center text-2xl shadow-lg">
+                    <span role="img" aria-label={v.title}>
+                      {v.emoji}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex-1">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-3">
+                        {v.title}
+                        {v.link ? (
+                          <a
+                            href={v.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm inline-flex items-center gap-2 rounded-full bg-slate-100 px-2 py-0.5 text-slate-600 hover:bg-slate-200 dark:bg-white/10 dark:text-slate-300"
+                          >
+                            {v.organization}
+                            <FiArrowRight className="h-3 w-3" />
+                          </a>
+                        ) : (
+                          <span className="text-sm inline-block rounded-full bg-slate-100 px-2 py-0.5 text-slate-600 dark:bg-white/10 dark:text-slate-300">
+                            {v.organization}
+                          </span>
+                        )}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-slate-400">{v.period}</p>
+                  </div>
+
+                  <ul className="mt-4 list-disc pl-5 text-sm text-slate-600 dark:text-slate-300">
+                    {v.details.map((d) => (
+                      <li key={d} className="mt-1">
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="resume" className="py-20">
         <div className="container mx-auto px-6">
