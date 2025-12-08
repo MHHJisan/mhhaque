@@ -217,6 +217,20 @@ const projects: Project[] = [
 const experiences: Experience[] = [
   {
     id: 1,
+    period: "06/2022 — Present",
+    company: "TechRA Learning Center",
+    role: "Instructor, Web Development and Basic Programming and IELTS",
+    description:
+      "Co-founded and instructed at a skill development institution in Noakhali, BD, teaching Basic Programming in Java and Web Development with PHP & React.",
+    achievements: [
+      "Established curriculum and taught Basic Programming in Java to multiple cohorts",
+      "Designed and delivered Web Development courses using PHP and React",
+      "Taught IELTS preparation to students alongside technical subjects",
+      "Built the institution from the ground up with tech enthusiast friends",
+    ],
+  },
+  {
+    id: 2,
     period: "2023 — Present",
     company: "Techraverse",
     role: "Lead Frontend Engineer",
@@ -229,7 +243,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     period: "2021 — 2023",
     company: "CPF International",
     role: "Full Stack Engineer",
@@ -242,7 +256,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     period: "2024 — 2025",
     company: "HI-TECH SoftSys",
     role: "Software Engineer",
@@ -255,7 +269,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     period: "Sep 2023 — Nov 2024",
     company: "Bioforge Health System LTD",
     role: "Software Engineer",
@@ -268,7 +282,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     period: "Feb 2024 — May 2024",
     company: "Octagon Learning (Bioforge)",
     role: "Software Engineer (Part-time) — ChatCls",
@@ -281,7 +295,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     period: "May 2024 — Nov 2024",
     company: "Octagon Learning (Bioforge)",
     role: "Project Lead (Part-time) — QuestionpaperSplitter",
@@ -294,7 +308,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 7,
+    id: 8,
     period: "Nov 2021 — May 2022",
     company: "ISZTECHS",
     role: "Web Developer",
@@ -307,7 +321,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 8,
+    id: 9,
     period: "May 2019 — Apr 2020",
     company: "Sis InflextionPoint",
     role: "Jr. Software Developer",
@@ -320,7 +334,7 @@ const experiences: Experience[] = [
     ],
   },
   {
-    id: 9,
+    id: 10,
     period: "Apr 2017 — Nov 2017",
     company: "Relativeagro Limited",
     role: "PHP Developer (Contractual, Part-time)",
