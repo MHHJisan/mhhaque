@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 import dynamic from "next/dynamic";
 const ExperienceSection = dynamic(
   () => import("./components/ExperienceSection"),
@@ -27,9 +30,12 @@ type Project = {
   description: string;
   tags: string[];
   image: string;
+  screenshots?: string[];
   githubUrl: string;
   liveUrl?: string;
   type: "web" | "mobile";
+  appStoreUrl?: string;
+  playStoreUrl?: string;
 };
 
 type Experience = {
@@ -219,15 +225,38 @@ const projects: Project[] = [
   },
   // Add your mobile apps here with type: 'mobile'
   // Example:
-  // {
-  //   id: 5,
-  //   title: "Mobile App Example",
-  //   description: "A sample mobile application",
-  //   tags: ["React Native", "TypeScript", "Firebase"],
-  //   image: "/projects/mobile-app.png",
-  //   githubUrl: "#",
-  //   type: 'mobile',
-  // },
+  {
+    id: 5,
+    title: "Mobile App Example",
+    description: "A sample mobile application",
+    tags: ["React Native", "TypeScript", "Firebase"],
+    image: "/projects/mobile-app.png",
+    screenshots: [
+      "/projects/tasbeeh_tracker/SS_01.png",
+      "/projects/tasbeeh_tracker/SS_02.png",
+      "/projects/tasbeeh_tracker/SS_03.png",
+      "/projects/tasbeeh_tracker/SS_04.png",
+      "/projects/tasbeeh_tracker/SS_05.png",
+      "/projects/tasbeeh_tracker/SS_06.png",
+      "/projects/tasbeeh_tracker/SS_07.png",
+      "/projects/tasbeeh_tracker/SS_08.png",
+      "/projects/tasbeeh_tracker/SS_09.png",
+      "/projects/tasbeeh_tracker/SS_10.png",
+      "/projects/tasbeeh_tracker/SS_11.png",
+      "/projects/tasbeeh_tracker/SS_12.png",
+      "/projects/tasbeeh_tracker/SS_13.png",
+      "/projects/tasbeeh_tracker/SS_14.png",
+      "/projects/tasbeeh_tracker/SS_15.png",
+      "/projects/tasbeeh_tracker/SS_16.png",
+      "/projects/tasbeeh_tracker/SS_17.png",
+      "/projects/tasbeeh_tracker/SS_18.png",
+      "/projects/tasbeeh_tracker/SS_19.png",
+    ],
+    githubUrl: "#",
+    type: "mobile",
+    appStoreUrl: "#app-store-link", // Replace with actual App Store URL
+    playStoreUrl: "#play-store-link", // Replace with actual Play Store URL
+  },
 ];
 
 const experiences: Experience[] = [
@@ -444,6 +473,123 @@ const navItems = [
   { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
 ];
+
+// Add this before the Home component
+type ProjectCardProps = {
+  project: Project;
+};
+
+const ProjectCard = ({ project }: ProjectCardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setIsOpen(false);
+  };
+
+  // If no screenshots are provided, use the main project image
+  const slides = project.screenshots?.length
+    ? project.screenshots
+    : [project.image];
+
+  return (
+    <div className="group flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-xl transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl dark:border-white/10 dark:bg-white/5">
+      <div
+        className="relative h-60 overflow-hidden cursor-pointer"
+        onClick={() => openLightbox(0)}
+      >
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
+        <div className="pointer-proevents-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30">
+          <span className="text-white font-medium text-lg">
+            Click to view screenshots
+          </span>
+        </div>
+      </div>
+
+      {/* Rest of your ProjectCard component remains the same */}
+      <div className="flex flex-1 flex-col p-6">
+        {/* ... existing content ... */}
+
+        <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+          {project.liveUrl && (
+            <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-300">
+              Live Project
+            </span>
+          )}
+        </div>
+        <h3 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">
+          {project.title}
+        </h3>
+        <p className="mt-3 flex-1 text-slate-600 dark:text-slate-300">
+          {project.description}
+        </p>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-full border border-slate-200/80 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/15 dark:text-slate-200"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-6 flex items-center gap-3">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition hover:text-indigo-500 dark:text-indigo-300"
+            >
+              Visit site
+              <FiArrowRight className="h-4 w-4" />
+            </a>
+          )}
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
+          >
+            View code
+            <FiGithub className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      {/* Lightbox component */}
+      {isOpen && (
+        <Lightbox
+          open={isOpen}
+          close={closeLightbox}
+          slides={slides.map((src) => ({ src }))}
+          index={currentImageIndex}
+          controller={{
+            closeOnBackdropClick: true,
+            closeOnPullDown: true,
+          }}
+          on={{
+            view: ({ index }) => setCurrentImageIndex(index),
+          }}
+        />
+      )}
+    </div>
+  );
+};
 
 export default function Home() {
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -778,74 +924,111 @@ export default function Home() {
               Recent projects that moved the needle.
             </h2>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-xl transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl dark:border-white/10 dark:bg-white/5"
-              >
-                <div className="relative h-60 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
-                    {project.liveUrl && (
-                      <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-300">
-                        Live Project
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">
-                    {project.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-slate-600 dark:text-slate-300">
-                    {project.description}
+
+          {/* Web Apps Section */}
+          <div className="mt-16">
+            <h3 className="mb-8 text-2xl font-semibold text-slate-900 dark:text-white">
+              Web Applications
+            </h3>
+            <div className="grid gap-8 md:grid-cols-2">
+              {projects
+                .filter((project) => project.type === "web")
+                .map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+            </div>
+          </div>
+
+          {/* Mobile Apps Section */}
+          <div className="mt-20">
+            <h3 className="mb-8 text-2xl font-semibold text-slate-900 dark:text-white">
+              Mobile Applications
+            </h3>
+            <div className="grid gap-8 md:grid-cols-2">
+              {projects.filter((project) => project.type === "mobile").length >
+              0 ? (
+                projects
+                  .filter((project) => project.type === "mobile")
+                  .map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                  ))
+              ) : (
+                <div className="col-span-2 py-12 text-center">
+                  <p className="text-slate-500 dark:text-slate-400">
+                    No mobile applications to display yet. Check back soon for
+                    updates!
                   </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-slate-200/80 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/15 dark:text-slate-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-6 flex items-center gap-3">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition hover:text-indigo-500 dark:text-indigo-300"
-                      >
-                        Visit site
-                        <FiArrowRight className="h-4 w-4" />
-                      </a>
-                    )}
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
-                    >
-                      View code
-                      <FiGithub className="h-4 w-4" />
-                    </a>
-                  </div>
                 </div>
-              </div>
-            ))}
+              )}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Project Card Component */}
+      {/* {function ProjectCard({ project }: { project: Project }) {
+        return (
+          <div className="group flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-xl transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl dark:border-white/10 dark:bg-white/5">
+            <div className="relative h-60 overflow-hidden">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
+                className="object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
+            </div>
+            <div className="flex flex-1 flex-col p-6">
+              <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
+                {project.liveUrl && (
+                  <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                    {project.type === "web" ? "Live Project" : "View App"}
+                  </span>
+                )}
+              </div>
+              <h3 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">
+                {project.title}
+              </h3>
+              <p className="mt-3 flex-1 text-slate-600 dark:text-slate-300">
+                {project.description}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-slate-200/80 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/15 dark:text-slate-200"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-6 flex items-center gap-3">
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition hover:text-indigo-500 dark:text-indigo-300"
+                  >
+                    {project.type === "web" ? "Visit site" : "View App"}
+                    <FiArrowRight className="h-4 w-4" />
+                  </a>
+                )}
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
+                >
+                  View code
+                  <FiGithub className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      }} */}
 
       {/* Client-only ExperienceSection loaded dynamically to avoid SSR/CSR mismatch */}
       <ExperienceSection experiences={experiences} />
