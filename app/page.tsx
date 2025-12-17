@@ -29,6 +29,7 @@ type Project = {
   image: string;
   githubUrl: string;
   liveUrl?: string;
+  type: "web" | "mobile";
 };
 
 type Experience = {
@@ -181,6 +182,7 @@ const projects: Project[] = [
     image: "/projects/techra_lms.png",
     githubUrl: "https://github.com/MHHJisan/techra_lms",
     liveUrl: "https://learn.techraverse.com",
+    type: "web",
   },
   {
     id: 2,
@@ -191,16 +193,18 @@ const projects: Project[] = [
     image: "/projects/techra_quiz.png",
     githubUrl: "https://github.com/MHHJisan/techra_quiz",
     liveUrl: "https://techra-quiz-web.vercel.app",
+    type: "web",
   },
   {
     id: 3,
     title: "CPF International",
     description:
       "High-conversion non-profit site with multilingual support, donation funnel, and event publishing workflow.",
-    tags: ["WordPress", "PHP", "WooCommerce", "Multilingual"],
+    tags: ["Multilingual"],
     image: "/projects/cpf.png",
     githubUrl: "https://github.com/MHHJisan/cpfint_new",
     liveUrl: "https://www.cpfint.org",
+    type: "web",
   },
   {
     id: 4,
@@ -211,7 +215,19 @@ const projects: Project[] = [
     image: "/projects/techra_site.png",
     githubUrl: "https://github.com/MHHJisan/techraverse",
     liveUrl: "https://techraverse.com",
+    type: "web",
   },
+  // Add your mobile apps here with type: 'mobile'
+  // Example:
+  // {
+  //   id: 5,
+  //   title: "Mobile App Example",
+  //   description: "A sample mobile application",
+  //   tags: ["React Native", "TypeScript", "Firebase"],
+  //   image: "/projects/mobile-app.png",
+  //   githubUrl: "#",
+  //   type: 'mobile',
+  // },
 ];
 
 const experiences: Experience[] = [
@@ -780,10 +796,11 @@ export default function Home() {
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-white/10 dark:text-white">
-                      Case study
-                    </span>
-                    {project.liveUrl && <span>Live</span>}
+                    {project.liveUrl && (
+                      <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                        Live Project
+                      </span>
+                    )}
                   </div>
                   <h3 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">
                     {project.title}
