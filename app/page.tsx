@@ -230,8 +230,9 @@ const projects: Project[] = [
     title: "Mobile App Example",
     description: "A sample mobile application",
     tags: ["React Native", "TypeScript", "Firebase"],
-    image: "/projects/mobile-app.png",
+    image: "/projects/tasbeeh_tracker/SS_main_page.png",
     screenshots: [
+      "/projects/tasbeeh_tracker/SS_main_page.png",
       "/projects/tasbeeh_tracker/SS_01.png",
       "/projects/tasbeeh_tracker/SS_02.png",
       "/projects/tasbeeh_tracker/SS_03.png",
