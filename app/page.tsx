@@ -22,7 +22,8 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaAndroid, FaApple, FaWhatsapp } from "react-icons/fa";
+import { FcTabletAndroid } from "react-icons/fc";
 
 type Project = {
   id: number;
@@ -569,7 +570,31 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             View code
             <FiGithub className="h-4 w-4" />
           </a>
+          {project.appStoreUrl && (
+            <a
+              href={project.appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
+            >
+              <FaApple className="h-6 w-6" />
+              Get on iOS
+            </a>
+          )}
+          {project.playStoreUrl && (
+            <a
+              href={project.playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
+            >
+              <FcTabletAndroid className="h-6 w-6" />
+              Get on Android
+            </a>
+          )}
         </div>
+
+        <div className="mt-6 flex items-center gap-3"></div>
       </div>
 
       {/* Lightbox component */}
