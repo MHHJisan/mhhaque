@@ -24,29 +24,10 @@ import {
 } from "react-icons/fi";
 import { FaAndroid, FaApple, FaWhatsapp } from "react-icons/fa";
 import { FcTabletAndroid } from "react-icons/fc";
-
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  tags: string[];
-  image: string;
-  screenshots?: string[];
-  githubUrl: string;
-  liveUrl?: string;
-  type: "web" | "mobile";
-  appStoreUrl?: string;
-  playStoreUrl?: string;
-};
-
-type Experience = {
-  id: number;
-  period: string;
-  company: string;
-  role: string;
-  description: string;
-  achievements: string[];
-};
+import ProjectsSection from "./components/ProjectsSection";
+import AboutSection from "./components/AboutSection";
+import SkillsSection from "./components/SkillsSection";
+import ServicesSection from "./components/ServicesSection";
 
 type Service = {
   id: number;
@@ -125,273 +106,6 @@ const heroStats = [
         <AnimatedNumber target={50} suffix="+" />
       </span>
     ),
-  },
-];
-
-const services: Service[] = [
-  {
-    id: 1,
-    title: "Product Engineering",
-    description:
-      "Plan, build, and launch performant web products that scale with your roadmap.",
-    highlights: [
-      "Full-stack Next.js development",
-      "Design system implementation",
-      "Web vitals & accessibility focus",
-    ],
-  },
-  {
-    id: 2,
-    title: "Experience Design",
-    description:
-      "Translate complex requirements into elegant, human-centered interfaces.",
-    highlights: [
-      "Rapid prototyping",
-      "Collaborative UX workshops",
-      "Component-driven design",
-    ],
-  },
-  {
-    id: 3,
-    title: "Technical Leadership",
-    description:
-      "Partner with founders and teams to ship faster while raising the quality bar.",
-    highlights: [
-      "Roadmap prioritisation",
-      "Code reviews & mentoring",
-      "Process automation",
-    ],
-  },
-];
-
-const skillCategories = [
-  {
-    title: "Core stack",
-    skills: ["TypeScript", "React 19", "Next.js", "Node.js", "Express"],
-  },
-  {
-    title: "Data & tooling",
-    skills: ["MongoDB", "PostgreSQL", "Prisma", "REST & GraphQL APIs"],
-  },
-  {
-    title: "Dev experience",
-    skills: ["Tailwind CSS", "Storybook", "Git & CI/CD", "Docker", "AWS"],
-  },
-];
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Techraverse Learning Platform",
-    description:
-      "Modular learning platform with real-time classrooms, cohort analytics, and a custom CMS powering 30k+ monthly sessions.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "MongoDB"],
-    image: "/projects/techra_lms.png",
-    githubUrl: "https://github.com/MHHJisan/techra_lms",
-    liveUrl: "https://learn.techraverse.com",
-    type: "web",
-  },
-  {
-    id: 2,
-    title: "Techra Quiz Web",
-    description:
-      "Gamified quiz experience featuring adaptive question banks, instant scoring, and shareable summaries for each attempt.",
-    tags: ["Next.js", "React", "Firebase", "Framer Motion"],
-    image: "/projects/techra_quiz.png",
-    githubUrl: "https://github.com/MHHJisan/techra_quiz",
-    liveUrl: "https://techra-quiz-web.vercel.app",
-    type: "web",
-  },
-  {
-    id: 3,
-    title: "CPF International",
-    description:
-      "High-conversion non-profit site with multilingual support, donation funnel, and event publishing workflow.",
-    tags: ["Multilingual"],
-    image: "/projects/cpf.png",
-    githubUrl: "https://github.com/MHHJisan/cpfint_new",
-    liveUrl: "https://www.cpfint.org",
-    type: "web",
-  },
-  {
-    id: 4,
-    title: "Techraverse.com",
-    description:
-      "Content platform for engineering notes, MDX-powered articles, and tooling reviews with custom search.",
-    tags: ["Next.js", "TypeScript", "MDX", "Contentful"],
-    image: "/projects/techra_site.png",
-    githubUrl: "https://github.com/MHHJisan/techraverse",
-    liveUrl: "https://techraverse.com",
-    type: "web",
-  },
-  // Add your mobile apps here with type: 'mobile'
-  // Example:
-  {
-    id: 5,
-    title: "Mobile App Example",
-    description: "A sample mobile application",
-    tags: ["React Native", "TypeScript", "Firebase"],
-    image: "/projects/tasbeeh_tracker/SS_main_page.png",
-    screenshots: [
-      "/projects/tasbeeh_tracker/SS_main_page.png",
-      "/projects/tasbeeh_tracker/SS_01.png",
-      "/projects/tasbeeh_tracker/SS_02.png",
-      "/projects/tasbeeh_tracker/SS_03.png",
-      "/projects/tasbeeh_tracker/SS_04.png",
-      "/projects/tasbeeh_tracker/SS_05.png",
-      "/projects/tasbeeh_tracker/SS_06.png",
-      "/projects/tasbeeh_tracker/SS_07.png",
-      "/projects/tasbeeh_tracker/SS_08.png",
-      "/projects/tasbeeh_tracker/SS_09.png",
-      "/projects/tasbeeh_tracker/SS_10.png",
-      "/projects/tasbeeh_tracker/SS_11.png",
-      "/projects/tasbeeh_tracker/SS_12.png",
-      "/projects/tasbeeh_tracker/SS_13.png",
-      "/projects/tasbeeh_tracker/SS_14.png",
-      "/projects/tasbeeh_tracker/SS_15.png",
-      "/projects/tasbeeh_tracker/SS_16.png",
-      "/projects/tasbeeh_tracker/SS_17.png",
-      "/projects/tasbeeh_tracker/SS_18.png",
-      "/projects/tasbeeh_tracker/SS_19.png",
-    ],
-    githubUrl: "#",
-    type: "mobile",
-    appStoreUrl: "#app-store-link", // Replace with actual App Store URL
-    playStoreUrl: "#play-store-link", // Replace with actual Play Store URL
-  },
-];
-
-const experiences: Experience[] = [
-  {
-    id: 1,
-    period: "06/2022 — Present",
-    company: "TechRA Learning Center",
-    role: "Instructor, Web Development and Basic Programming and IELTS",
-    description:
-      "Co-founded and instructed at a skill development institution in Noakhali, BD, teaching Basic Programming in Java and Web Development with PHP & React.",
-    achievements: [
-      "Established curriculum and taught Basic Programming in Java to multiple cohorts",
-      "Designed and delivered Web Development courses using PHP and React",
-      "Taught IELTS preparation to students alongside technical subjects",
-      "Built the institution from the ground up with tech enthusiast friends",
-    ],
-  },
-  {
-    id: 2,
-    period: "2023 — Present",
-    company: "Techraverse",
-    role: "Lead Frontend Engineer",
-    description:
-      "Guiding the frontend guild, defining standards, and partnering directly with founders to launch new verticals.",
-    achievements: [
-      "Refactored the design system to support theming and dark mode",
-      "Cut CLS issues by 68% through streaming & suspense-first layouts",
-      "Mentored a team of 6 engineers across two timezones",
-    ],
-  },
-  {
-    id: 3,
-    period: "2021 — 2023",
-    company: "CPF International",
-    role: "Full Stack Engineer",
-    description:
-      "Owned the digital fundraising stack end-to-end, from CRM integrations to performance budgets.",
-    achievements: [
-      "Scaled donation revenue 2.5× with a revamped checkout flow",
-      "Built a custom content approval workflow with audit trails",
-      "Established automated Lighthouse monitoring in CI",
-    ],
-  },
-  {
-    id: 4,
-    period: "2024 — 2025",
-    company: "HI-TECH SoftSys",
-    role: "Software Engineer",
-    description:
-      "Developed an LMS system for web and mobile using Vue + Laravel for the web and Flutter for the mobile app (https://online-academy.islamicdigitallane.com/).",
-    achievements: [
-      "Built core LMS features for both web and mobile: courses, enrollments, and progress tracking",
-      "Collaborated on cross-platform API design with Laravel back-end",
-      "Delivered responsive Vue front-end components and Flutter mobile screens",
-    ],
-  },
-  {
-    id: 5,
-    period: "Sep 2023 — Nov 2024",
-    company: "Bioforge Health System LTD",
-    role: "Software Engineer",
-    description:
-      "Developed and maintained a Hospital Management System (HMS) using Java Spring for the backend and AngularJS/ReactJS for the frontend. Integrated and configured Odoo accounting software with the HMS.",
-    achievements: [
-      "Implemented core HMS modules and integrations with Odoo",
-      "Maintained and extended backend services in Java Spring",
-      "Improved deployment and integration workflows",
-    ],
-  },
-  {
-    id: 6,
-    period: "Feb 2024 — May 2024",
-    company: "Octagon Learning (Bioforge)",
-    role: "Software Engineer (Part-time) — ChatCls",
-    description:
-      "Developed a WhatsApp chatbot that delivers scheduled question sets to registered students using Node.js and Express.",
-    achievements: [
-      "Built a scheduling system to send subject-specific question sets",
-      "Integrated with WhatsApp messaging for automated delivery",
-      "Streamlined registration and message flows for student cohorts",
-    ],
-  },
-  {
-    id: 7,
-    period: "May 2024 — Nov 2024",
-    company: "Octagon Learning (Bioforge)",
-    role: "Project Lead (Part-time) — QuestionpaperSplitter",
-    description:
-      "Led development of a script that ingests PDFs and auto-splits them into images where each image contains a single question, exporting results to a configured folder.",
-    achievements: [
-      "Designed a robust PDF-to-image pipeline for batch splitting",
-      "Automated export and folder workflows for downstream processing",
-      "Improved accuracy of question detection and split timing",
-    ],
-  },
-  {
-    id: 8,
-    period: "Nov 2021 — May 2022",
-    company: "ISZTECHS",
-    role: "Web Developer",
-    description:
-      "Worked on PHP and Laravel-based web solutions for US-based clients, implementing core features and maintaining applications.",
-    achievements: [
-      "Delivered client-facing features in Laravel and core PHP",
-      "Maintained legacy codebases and migrated features to Laravel",
-      "Collaborated with remote teams to meet delivery deadlines",
-    ],
-  },
-  {
-    id: 9,
-    period: "May 2019 — Apr 2020",
-    company: "Sis InflextionPoint",
-    role: "Jr. Software Developer",
-    description:
-      "Worked on iOS app development using Swift, contributing to app features and bug fixes.",
-    achievements: [
-      "Implemented UI components and view controllers in Swift",
-      "Fixed bugs and improved app stability across iOS versions",
-      "Collaborated with senior developers on feature design",
-    ],
-  },
-  {
-    id: 10,
-    period: "Apr 2017 — Nov 2017",
-    company: "Relativeagro Limited",
-    role: "PHP Developer (Contractual, Part-time)",
-    description:
-      "Worked as a 3rd-year student on a web-based Livestock Management System using core PHP, and integrated an Account Management System.",
-    achievements: [
-      "Developed core modules for livestock management in PHP",
-      "Integrated accounting features into the system",
-      "Delivered features while balancing academic commitments",
-    ],
   },
 ];
 
@@ -476,147 +190,6 @@ const navItems = [
   { href: "#contact", label: "Contact" },
 ];
 
-// Add this before the Home component
-type ProjectCardProps = {
-  project: Project;
-};
-
-const ProjectCard = ({ project }: ProjectCardProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const openLightbox = (index: number) => {
-    setCurrentImageIndex(index);
-    setIsOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setIsOpen(false);
-  };
-
-  // If no screenshots are provided, use the main project image
-  const slides = project.screenshots?.length
-    ? project.screenshots
-    : [project.image];
-
-  return (
-    <div className="group flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-xl transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl dark:border-white/10 dark:bg-white/5">
-      <div
-        className="relative h-60 overflow-hidden cursor-pointer"
-        onClick={() => openLightbox(0)}
-      >
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
-          className="object-cover transition duration-500 group-hover:scale-105"
-        />
-        <div className="pointer-proevents-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30">
-          <span className="text-white font-medium text-lg">
-            Click to view screenshots
-          </span>
-        </div>
-      </div>
-
-      {/* Rest of your ProjectCard component remains the same */}
-      <div className="flex flex-1 flex-col p-6">
-        {/* ... existing content ... */}
-
-        <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
-          {project.liveUrl && (
-            <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-300">
-              Live Project
-            </span>
-          )}
-        </div>
-        <h3 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">
-          {project.title}
-        </h3>
-        <p className="mt-3 flex-1 text-slate-600 dark:text-slate-300">
-          {project.description}
-        </p>
-
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-slate-200/80 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/15 dark:text-slate-200"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-6 flex items-center gap-3">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition hover:text-indigo-500 dark:text-indigo-300"
-            >
-              Visit site
-              <FiArrowRight className="h-4 w-4" />
-            </a>
-          )}
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
-          >
-            View code
-            <FiGithub className="h-4 w-4" />
-          </a>
-          {project.appStoreUrl && (
-            <a
-              href={project.appStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
-            >
-              <FaApple className="h-6 w-6" />
-              Get on iOS
-            </a>
-          )}
-          {project.playStoreUrl && (
-            <a
-              href={project.playStoreUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
-            >
-              <FcTabletAndroid className="h-6 w-6" />
-              Get on Android
-            </a>
-          )}
-        </div>
-
-        <div className="mt-6 flex items-center gap-3"></div>
-      </div>
-
-      {/* Lightbox component */}
-      {isOpen && (
-        <Lightbox
-          open={isOpen}
-          close={closeLightbox}
-          slides={slides.map((src) => ({ src }))}
-          index={currentImageIndex}
-          controller={{
-            closeOnBackdropClick: true,
-            closeOnPullDown: true,
-          }}
-          on={{
-            view: ({ index }) => setCurrentImageIndex(index),
-          }}
-        />
-      )}
-    </div>
-  );
-};
-
 export default function Home() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -665,9 +238,38 @@ export default function Home() {
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+                className="group relative px-5 py-2.5"
               >
-                {item.label}
+                <span className="relative z-10 font-display text-base font-semibold tracking-wide text-slate-700 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent dark:text-slate-200">
+                  {item.label}
+                </span>
+                <span className="absolute inset-0 -z-0 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100 dark:from-indigo-900/30 dark:to-purple-900/30" />
+                <style jsx>{`
+                  @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap");
+                  @keyframes float {
+                    0%,
+                    100% {
+                      transform: translateY(0) scale(1);
+                    }
+                    50% {
+                      transform: translateY(-4px) scale(1.02);
+                    }
+                  }
+                  .font-display {
+                    font-family: "Plus Jakarta Sans", -apple-system,
+                      BlinkMacSystemFont, sans-serif;
+                  }
+                  .group {
+                    animation: float 4s ease-in-out infinite;
+                    animation-delay: calc(
+                      0.08s * ${navItems.findIndex((i) => i.href === item.href)}
+                    );
+                  }
+                  .group:hover {
+                    animation: none;
+                    transform: translateY(-2px);
+                  }
+                `}</style>
               </a>
             ))}
             <a
@@ -833,231 +435,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
-              About
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
-              Engineering calm, reliable interfaces for ambitious teams.
-            </h2>
-            <p className="mt-6 text-lg text-slate-600 dark:text-slate-300">
-              From marketing websites to multi-tenant applications, I obsess
-              over the details that make software
-              approachable—micro-interactions, motion, and systemised component
-              workflows. I thrive in product squads where design, engineering,
-              and business strategy overlap.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              "Human-centered thinking",
-              "A11y-first implementations",
-              "Long-term maintainability",
-            ].map((principle) => (
-              <div
-                key={principle}
-                className="rounded-2xl border border-slate-200/70 bg-white/80 p-6 text-slate-600 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-slate-300"
-              >
-                <span className="text-base font-semibold text-slate-900 dark:text-white">
-                  {principle}
-                </span>
-                <p className="mt-3 text-sm text-slate-500 dark:text-slate-300">
-                  Thoughtful defaults, clear flows, and measurable impact on
-                  business goals.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AboutSection />
 
-      <section id="skills" className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
-              Toolkit
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
-              A pragmatic stack honed on production systems.
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {skillCategories.map((category) => (
-              <div
-                key={category.title}
-                className="rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-lg shadow-slate-200/60 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-none"
-              >
-                <p className="text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-300">
-                  {category.title}
-                </p>
-                <ul className="mt-4 space-y-2 text-base font-medium text-slate-800 dark:text-slate-100">
-                  {category.skills.map((skill) => (
-                    <li key={skill} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SkillsSection />
 
-      <section id="services" className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {services.map((service) => (
-              <div
-                key={service.id}
-                className="group flex flex-col rounded-3xl border border-slate-200/70 bg-white/80 p-8 shadow-xl transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl dark:border-white/10 dark:bg-white/5 dark:hover:border-indigo-500/40"
-              >
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-100 text-indigo-600 group-hover:scale-110 dark:bg-indigo-500/20 dark:text-indigo-200">
-                  {service.id}
-                </div>
-                <h3 className="mt-6 text-2xl font-semibold text-slate-900 dark:text-white">
-                  {service.title}
-                </h3>
-                <p className="mt-3 text-base text-slate-600 dark:text-slate-300">
-                  {service.description}
-                </p>
-                <ul className="mt-6 space-y-2 text-sm text-slate-500 dark:text-slate-300">
-                  {service.highlights.map((highlight) => (
-                    <li key={highlight} className="flex items-start gap-2">
-                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-indigo-500" />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesSection />
 
-      <section
-        id="projects"
-        className="border-y border-slate-200/60 bg-white/80 py-20 dark:border-white/5 dark:bg-slate-950"
-      >
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-600 dark:text-indigo-400">
-              Selected Work
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-white">
-              Recent projects that moved the needle.
-            </h2>
-          </div>
-
-          {/* Web Apps Section */}
-          <div className="mt-16">
-            <h3 className="mb-8 text-2xl font-semibold text-slate-900 dark:text-white">
-              Web Applications
-            </h3>
-            <div className="grid gap-8 md:grid-cols-2">
-              {projects
-                .filter((project) => project.type === "web")
-                .map((project) => (
-                  <ProjectCard key={project.id} project={project} />
-                ))}
-            </div>
-          </div>
-
-          {/* Mobile Apps Section */}
-          <div className="mt-20">
-            <h3 className="mb-8 text-2xl font-semibold text-slate-900 dark:text-white">
-              Mobile Applications
-            </h3>
-            <div className="grid gap-8 md:grid-cols-2">
-              {projects.filter((project) => project.type === "mobile").length >
-              0 ? (
-                projects
-                  .filter((project) => project.type === "mobile")
-                  .map((project) => (
-                    <ProjectCard key={project.id} project={project} />
-                  ))
-              ) : (
-                <div className="col-span-2 py-12 text-center">
-                  <p className="text-slate-500 dark:text-slate-400">
-                    No mobile applications to display yet. Check back soon for
-                    updates!
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Project Card Component */}
-      {/* {function ProjectCard({ project }: { project: Project }) {
-        return (
-          <div className="group flex flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-xl transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-2xl dark:border-white/10 dark:bg-white/5">
-            <div className="relative h-60 overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 520px"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-80" />
-            </div>
-            <div className="flex flex-1 flex-col p-6">
-              <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-300">
-                {project.liveUrl && (
-                  <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-800 dark:bg-green-900/30 dark:text-green-300">
-                    {project.type === "web" ? "Live Project" : "View App"}
-                  </span>
-                )}
-              </div>
-              <h3 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white">
-                {project.title}
-              </h3>
-              <p className="mt-3 flex-1 text-slate-600 dark:text-slate-300">
-                {project.description}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-slate-200/80 px-3 py-1 text-xs font-medium text-slate-600 dark:border-white/15 dark:text-slate-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-6 flex items-center gap-3">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition hover:text-indigo-500 dark:text-indigo-300"
-                  >
-                    {project.type === "web" ? "Visit site" : "View App"}
-                    <FiArrowRight className="h-4 w-4" />
-                  </a>
-                )}
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-indigo-600 dark:text-slate-200"
-                >
-                  View code
-                  <FiGithub className="h-4 w-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        );
-      }} */}
+      <ProjectsSection />
 
       {/* Client-only ExperienceSection loaded dynamically to avoid SSR/CSR mismatch */}
-      <ExperienceSection experiences={experiences} />
+      <ExperienceSection />
 
       <section id="awards" className="py-20">
         <div className="container mx-auto px-6">
