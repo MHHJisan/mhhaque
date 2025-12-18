@@ -240,7 +240,7 @@ export default function Home() {
                 href={item.href}
                 className="group relative px-5 py-2.5"
               >
-                <span className="relative z-10 font-display text-base font-semibold tracking-wide text-slate-700 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent dark:text-slate-200">
+                <span className="relative z-10 font-display text-base font-semibold tracking-wide text-green-900 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent dark:text-cyan-400">
                   {item.label}
                 </span>
                 <span className="absolute inset-0 -z-0 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100 dark:from-indigo-900/30 dark:to-purple-900/30" />
