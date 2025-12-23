@@ -18,8 +18,7 @@ const skillCategories: SkillCategory[] = [
     title: "FrontEnd",
     skills: [
       "TypeScript",
-      "React 19",
-      "Next.js",
+      "React / NextJS",
       "Vue.js",
       "AngularJS",
       "TailwindCSS",
@@ -33,6 +32,10 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Dev experience",
     skills: ["Tailwind CSS", "Storybook", "Git & CI/CD", "Docker", "AWS"],
+  },
+  {
+    title: "Mobile",
+    skills: ["Flutter / Dart", "React Native", "Swift", "Java"],
   },
 ];
 

@@ -183,10 +183,13 @@ const socialLinks: SocialLink[] = [
 
 const navItems = [
   { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#services", label: "Services" },
-  { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
+
+  { href: "#skills", label: "Skills" },
+
+  { href: "#projects", label: "Projects" },
+
+  { href: "#services", label: "Services" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -438,14 +441,15 @@ export default function Home() {
 
       <AboutSection />
 
-      <SkillsSection />
+      <ExperienceSection />
 
-      <ServicesSection />
+      <SkillsSection />
 
       <ProjectsSection />
 
+      <ServicesSection />
+
       {/* Client-only ExperienceSection loaded dynamically to avoid SSR/CSR mismatch */}
-      <ExperienceSection />
 
       <section id="awards" className="py-20">
         <div className="container mx-auto px-6">
