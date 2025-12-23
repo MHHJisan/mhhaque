@@ -352,7 +352,8 @@ export default function Home() {
                 Available for freelance & full-time roles
               </div>
               <h1 className="mt-6 text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
-                I design & build thoughtful web products that feel effortless.
+                I design & build thoughtful web & mobile applications that feel
+                effortless.
               </h1>
               <p className="mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-300">
                 I&apos;m Hasibul Haque Jisan, a full-stack engineer obsessed

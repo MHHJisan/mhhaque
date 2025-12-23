@@ -15,8 +15,16 @@ type SkillCategory = {
 
 const skillCategories: SkillCategory[] = [
   {
-    title: "Core stack",
-    skills: ["TypeScript", "React 19", "Next.js", "Node.js", "Express"],
+    title: "FrontEnd",
+    skills: [
+      "TypeScript",
+      "React 19",
+      "Next.js",
+      "Vue.js",
+      "AngularJS",
+      "TailwindCSS",
+      "FlutterWeb",
+    ],
   },
   {
     title: "Data & tooling",
