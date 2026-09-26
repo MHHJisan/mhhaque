@@ -74,7 +74,7 @@ const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "MDX", "Contentful"],
     image: "/projects/techra_site.png",
     githubUrl: "https://github.com/MHHJisan/techraverse",
-    liveUrl: "https://techraverse.com",
+    liveUrl: "https://techraverse.vercel.app/",
     type: "web",
   },
 
