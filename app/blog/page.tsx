@@ -26,14 +26,14 @@ const translations = {
     backend: "Backend",
     publicPolicy: "Public Policy",
     featured: "Featured",
-    view: "view",
-    views: "views",
+    yourVisits: "Total readers",
+    visits: "readers",
   },
   bn: {
     blog: "ব্লগ",
     title: "চিন্তা ও দৃষ্টিভঙ্গি",
     description:
-      "সফটওয়্যার ডেভেলপমেন্ট, প্রযুক্তি এবং দুর্দান্ত পণ্য তৈরির উপর আমার অভিজ্ঞতা, শেখা এবং দৃষ্টিভঙ্গি শেয়ার করা।",
+      "সফটওয়্যার ডেভেলপমেন্ট, প্রয়ক্তি এবং দুর্দান্ত পণ্য তৈরির উপর আমার অভিজ্ঞতা, শেখা এবং দৃষ্টিভঙ্গি শেয়ার করা।",
     readMore: "আরও পড়ুন",
     comingSoon: "আরও নিবন্ধ শীঘ্রই আসছে...",
     backToHome: "হোম পেজে ফিরুন",
@@ -42,8 +42,8 @@ const translations = {
     backend: "ব্যাকএন্ড",
     publicPolicy: "পাবলিক পলিসি",
     featured: "বৈশিষ্ট্যযুক্ত",
-    view: "বার দেখা হয়েছে",
-    views: "বার দেখা হয়েছে",
+    yourVisits: "মোট পাঠক",
+    visits: "জন পড়েছেন",
   },
 };
 
@@ -140,18 +140,46 @@ export default function BlogPage() {
     setLanguage((prev) => (prev === "en" ? "bn" : "en"));
   };
 
+  // Load unique reader counts from the API
   useEffect(() => {
-    // Load view counts from localStorage
-    try {
-      const viewCounts = JSON.parse(
-        localStorage.getItem("blogViewCounts") || "{}",
-      );
-      setViewCounts(viewCounts);
-    } catch (error) {
-      console.error("Error loading view counts:", error);
-      setViewCounts({});
-    }
-  }, []);
+    const loadViewCounts = async () => {
+      try {
+        // Fetch all post IDs in parallel
+        const results = await Promise.all(
+          posts.map(async (post) => {
+            const response = await fetch(`/api/blog-views?id=${post.id}`, {
+              cache: "no-store",
+            });
+
+            if (!response.ok) {
+              throw new Error(`Failed to load views for post ${post.id}`);
+            }
+
+            const data = await response.json();
+
+            return {
+              id: post.id,
+              views: data.views,
+            };
+          }),
+        );
+
+        // Convert API results into { postId: views } format
+        const counts: Record<number, number> = {};
+
+        results.forEach((result) => {
+          counts[result.id] = result.views;
+        });
+
+        // Update the view counts
+        setViewCounts(counts);
+      } catch (error) {
+        console.error("Error loading blog view counts:", error);
+      }
+    };
+
+    loadViewCounts();
+  }, [posts]);
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
@@ -233,12 +261,9 @@ export default function BlogPage() {
                   </span>
                   <span className="inline-flex items-center gap-1">
                     <FiEye className="h-4 w-4" />
-                    {viewCounts[posts.find((post) => post.featured)!.id] ||
-                      0}{" "}
-                    {(viewCounts[posts.find((post) => post.featured)!.id] ||
-                      0) === 1
-                      ? t.view
-                      : t.views}
+                    {t.yourVisits}:{" "}
+                    {viewCounts[posts.find((post) => post.featured)!.id] || 0}{" "}
+                    {t.visits}
                   </span>
                 </div>
 
@@ -293,8 +318,7 @@ export default function BlogPage() {
                     </span>
                     <span className="inline-flex items-center gap-1">
                       <FiEye className="h-4 w-4" />
-                      {viewCounts[post.id] || 0}{" "}
-                      {(viewCounts[post.id] || 0) === 1 ? t.view : t.views}
+                      {t.yourVisits}: {viewCounts[post.id] || 0} {t.visits}
                     </span>
                   </div>
 

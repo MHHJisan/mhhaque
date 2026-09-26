@@ -3,6 +3,7 @@
 import { useState, use, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { DiscussionEmbed } from "disqus-react";
 import {
   FiArrowLeft,
   FiCalendar,
@@ -23,8 +24,8 @@ const translations = {
     letMeKnowYourThoughts: "Let me know your thoughts!",
     thoughtsDescription:
       "I'd love to hear your perspective on this topic. Feel free to share your thoughts and experiences in the comments or connect with me directly.",
-    view: "read",
-    views: "read",
+    comments: "Comments",
+    views: "readers",
   },
   bn: {
     backToBlog: "ব্লগে ফিরুন",
@@ -37,7 +38,7 @@ const translations = {
     letMeKnowYourThoughts: "আপনার চিন্তাভাবনা জানান!",
     thoughtsDescription:
       "আমি এই বিষয়ে আপনার দৃষ্টিভঙ্গি শুনতে চাই। মন্তব্যে আপনার চিন্তাভাবনা এবং অভিজ্ঞতা শেয়ার করতে বা সরাসরি আমার সাথে যোগাযোগ করতে দ্বিধা করবেন না।",
-    view: "বার দেখা হয়েছে",
+    comments: "মন্তব্য",
     views: "বার দেখা হয়েছে",
   },
 };
@@ -941,42 +942,50 @@ export default function BlogPostPage({
   const t = translations[language];
   const post = blogPosts[language][postId as keyof typeof blogPosts.en];
 
-  useEffect(() => {
-    // Track unique views using localStorage (client-side only for static sites)
-    try {
-      const viewData = JSON.parse(localStorage.getItem("blogViewData") || "{}");
-
-      if (!viewData[postId]) {
-        // Mark this post as viewed for this user
-        viewData[postId] = {
-          viewed: true,
-          timestamp: Date.now(),
-        };
-        localStorage.setItem("blogViewData", JSON.stringify(viewData));
-
-        // Increment the view count in localStorage
-        const viewCounts = JSON.parse(
-          localStorage.getItem("blogViewCounts") || "{}",
-        );
-        viewCounts[postId] = (viewCounts[postId] || 0) + 1;
-        localStorage.setItem("blogViewCounts", JSON.stringify(viewCounts));
-        setViewCount(viewCounts[postId]);
-      } else {
-        // Just get current view count without incrementing
-        const viewCounts = JSON.parse(
-          localStorage.getItem("blogViewCounts") || "{}",
-        );
-        setViewCount(viewCounts[postId] || 0);
-      }
-    } catch (error) {
-      console.error("Error tracking views:", error);
-      setViewCount(0);
-    }
-  }, [postId]);
+  const disqusShortname = "mhhaque-github-io"; // You'll need to set this up
+  const disqusConfig = {
+    url: `https://mhhaque.github.io/blog/${id}`,
+    identifier: `blog-post-${id}`,
+    title: post.title,
+  };
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "bn" : "en"));
   };
+
+  useEffect(() => {
+    // Track global views using API
+    const trackView = async () => {
+      try {
+        // Send the blog post ID the server.
+        // The browser automatically sends the visitor cookie.
+
+        const response = await fetch("/api/blog-views", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ postId }),
+        });
+
+        // Throw and error if the API request failed
+        if (!response.ok) {
+          throw new Error("Failed to track blog view");
+        }
+
+        //Read the unique reader count from the server
+        const data = await response.json();
+
+        //update the displayed reader count
+        setViewCount(data.views);
+      } catch (error) {
+        console.error("Error tracking views:", error);
+        setViewCount(0);
+      }
+    };
+
+    trackView();
+  }, [postId]);
 
   if (!post) {
     return (
@@ -1063,9 +1072,7 @@ export default function BlogPostPage({
               </span>
               <span className="inline-flex items-center gap-1">
                 <FiEye className="h-4 w-4" />
-                {viewCount > 0
-                  ? `${viewCount} ${viewCount === 1 ? t.view : t.views}`
-                  : `${0} ${t.views}`}
+                {viewCount} {t.views}
               </span>
             </div>
 
@@ -1137,6 +1144,17 @@ export default function BlogPostPage({
                 </p>
               );
             })}
+          </div>
+
+          {/* Disqus Comments Section */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6">
+              {t.comments}
+            </h3>
+            <DiscussionEmbed
+              shortname={disqusShortname}
+              config={disqusConfig}
+            />
           </div>
 
           {postId === 4 && (
