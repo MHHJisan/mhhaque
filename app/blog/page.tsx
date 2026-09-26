@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -9,6 +9,7 @@ import {
   FiCalendar,
   FiClock,
   FiGlobe,
+  FiEye,
 } from "react-icons/fi";
 
 const translations = {
@@ -25,6 +26,8 @@ const translations = {
     backend: "Backend",
     publicPolicy: "Public Policy",
     featured: "Featured",
+    view: "view",
+    views: "views",
   },
   bn: {
     blog: "ব্লগ",
@@ -39,6 +42,8 @@ const translations = {
     backend: "ব্যাকএন্ড",
     publicPolicy: "পাবলিক পলিসি",
     featured: "বৈশিষ্ট্যযুক্ত",
+    view: "বার দেখা হয়েছে",
+    views: "বার দেখা হয়েছে",
   },
 };
 
@@ -127,12 +132,26 @@ const blogPosts = {
 
 export default function BlogPage() {
   const [language, setLanguage] = useState<"en" | "bn">("en");
+  const [viewCounts, setViewCounts] = useState<Record<number, number>>({});
   const t = translations[language];
   const posts = blogPosts[language];
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "bn" : "en"));
   };
+
+  useEffect(() => {
+    // Load view counts from localStorage
+    try {
+      const viewCounts = JSON.parse(
+        localStorage.getItem("blogViewCounts") || "{}",
+      );
+      setViewCounts(viewCounts);
+    } catch (error) {
+      console.error("Error loading view counts:", error);
+      setViewCounts({});
+    }
+  }, []);
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
@@ -212,6 +231,15 @@ export default function BlogPage() {
                     <FiClock className="h-4 w-4" />
                     {posts.find((post) => post.featured)!.readTime}
                   </span>
+                  <span className="inline-flex items-center gap-1">
+                    <FiEye className="h-4 w-4" />
+                    {viewCounts[posts.find((post) => post.featured)!.id] ||
+                      0}{" "}
+                    {(viewCounts[posts.find((post) => post.featured)!.id] ||
+                      0) === 1
+                      ? t.view
+                      : t.views}
+                  </span>
                 </div>
 
                 <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 group-hover:text-indigo-600 dark:text-white dark:group-hover:text-indigo-400 mb-4">
@@ -262,6 +290,11 @@ export default function BlogPage() {
                     <span className="inline-flex items-center gap-1">
                       <FiClock className="h-4 w-4" />
                       {post.readTime}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <FiEye className="h-4 w-4" />
+                      {viewCounts[post.id] || 0}{" "}
+                      {(viewCounts[post.id] || 0) === 1 ? t.view : t.views}
                     </span>
                   </div>
 

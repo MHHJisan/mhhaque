@@ -1,9 +1,15 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FiArrowLeft, FiCalendar, FiClock, FiGlobe } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiCalendar,
+  FiClock,
+  FiGlobe,
+  FiEye,
+} from "react-icons/fi";
 
 const translations = {
   en: {
@@ -17,6 +23,8 @@ const translations = {
     letMeKnowYourThoughts: "Let me know your thoughts!",
     thoughtsDescription:
       "I'd love to hear your perspective on this topic. Feel free to share your thoughts and experiences in the comments or connect with me directly.",
+    view: "read",
+    views: "read",
   },
   bn: {
     backToBlog: "ব্লগে ফিরুন",
@@ -29,6 +37,8 @@ const translations = {
     letMeKnowYourThoughts: "আপনার চিন্তাভাবনা জানান!",
     thoughtsDescription:
       "আমি এই বিষয়ে আপনার দৃষ্টিভঙ্গি শুনতে চাই। মন্তব্যে আপনার চিন্তাভাবনা এবং অভিজ্ঞতা শেয়ার করতে বা সরাসরি আমার সাথে যোগাযোগ করতে দ্বিধা করবেন না।",
+    view: "বার দেখা হয়েছে",
+    views: "বার দেখা হয়েছে",
   },
 };
 
@@ -927,8 +937,42 @@ export default function BlogPostPage({
   const { id } = use(params);
   const postId = parseInt(id);
   const [language, setLanguage] = useState<"en" | "bn">("en");
+  const [viewCount, setViewCount] = useState<number>(0);
   const t = translations[language];
   const post = blogPosts[language][postId as keyof typeof blogPosts.en];
+
+  useEffect(() => {
+    // Track unique views using localStorage (client-side only for static sites)
+    try {
+      const viewData = JSON.parse(localStorage.getItem("blogViewData") || "{}");
+
+      if (!viewData[postId]) {
+        // Mark this post as viewed for this user
+        viewData[postId] = {
+          viewed: true,
+          timestamp: Date.now(),
+        };
+        localStorage.setItem("blogViewData", JSON.stringify(viewData));
+
+        // Increment the view count in localStorage
+        const viewCounts = JSON.parse(
+          localStorage.getItem("blogViewCounts") || "{}",
+        );
+        viewCounts[postId] = (viewCounts[postId] || 0) + 1;
+        localStorage.setItem("blogViewCounts", JSON.stringify(viewCounts));
+        setViewCount(viewCounts[postId]);
+      } else {
+        // Just get current view count without incrementing
+        const viewCounts = JSON.parse(
+          localStorage.getItem("blogViewCounts") || "{}",
+        );
+        setViewCount(viewCounts[postId] || 0);
+      }
+    } catch (error) {
+      console.error("Error tracking views:", error);
+      setViewCount(0);
+    }
+  }, [postId]);
 
   const toggleLanguage = () => {
     setLanguage((prev) => (prev === "en" ? "bn" : "en"));
@@ -1016,6 +1060,12 @@ export default function BlogPostPage({
               <span className="inline-flex items-center gap-1">
                 <FiClock className="h-4 w-4" />
                 {post.readTime}
+              </span>
+              <span className="inline-flex items-center gap-1">
+                <FiEye className="h-4 w-4" />
+                {viewCount > 0
+                  ? `${viewCount} ${viewCount === 1 ? t.view : t.views}`
+                  : `${0} ${t.views}`}
               </span>
             </div>
 
