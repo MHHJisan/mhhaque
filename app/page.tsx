@@ -10,7 +10,7 @@ const ExperienceSection = dynamic(
   {
     ssr: false,
     loading: () => <div className="py-20">Loading experience…</div>,
-  }
+  },
 );
 import Image from "next/image";
 import type { IconType } from "react-icons";
@@ -189,6 +189,7 @@ const navItems = [
 
   { href: "#projects", label: "Projects" },
 
+  { href: "/blog", label: "Blog" },
   { href: "#services", label: "Services" },
   { href: "#contact", label: "Contact" },
 ];
@@ -241,12 +242,29 @@ export default function Home() {
               <a
                 key={item.href}
                 href={item.href}
-                className="group relative px-5 py-2.5"
+                className={`group relative px-5 py-2.5 ${
+                  item.label === "Blog"
+                    ? "rounded-full bg-gradient-to-r from-pink-500 to-rose-500 shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 hover:scale-105"
+                    : ""
+                }`}
               >
-                <span className="relative z-10 font-display text-base font-semibold tracking-wide text-green-900 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent dark:text-cyan-400">
+                <span
+                  className={`relative z-10 font-display text-base font-semibold tracking-wide transition-all duration-300 ${
+                    item.label === "Blog"
+                      ? "text-white"
+                      : "text-green-900 group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent dark:text-cyan-400"
+                  }`}
+                >
                   {item.label}
+                  {item.label === "Blog" && (
+                    <span className="ml-2 inline-flex items-center rounded-full bg-white/20 px-2 py-0.5 text-xs font-bold">
+                      New
+                    </span>
+                  )}
                 </span>
-                <span className="absolute inset-0 -z-0 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100 dark:from-indigo-900/30 dark:to-purple-900/30" />
+                {item.label !== "Blog" && (
+                  <span className="absolute inset-0 -z-0 rounded-xl bg-gradient-to-r from-indigo-50 to-purple-50 opacity-0 shadow-md transition-all duration-300 group-hover:opacity-100 dark:from-indigo-900/30 dark:to-purple-900/30" />
+                )}
                 <style jsx>{`
                   @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap");
                   @keyframes float {
@@ -259,8 +277,11 @@ export default function Home() {
                     }
                   }
                   .font-display {
-                    font-family: "Plus Jakarta Sans", -apple-system,
-                      BlinkMacSystemFont, sans-serif;
+                    font-family:
+                      "Plus Jakarta Sans",
+                      -apple-system,
+                      BlinkMacSystemFont,
+                      sans-serif;
                   }
                   .group {
                     animation: float 4s ease-in-out infinite;
@@ -316,9 +337,18 @@ export default function Home() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-base font-semibold text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"
+                  className={`rounded-2xl px-4 py-3 text-base font-semibold transition-colors ${
+                    item.label === "Blog"
+                      ? "bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg"
+                      : "text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-white/10"
+                  }`}
                 >
                   {item.label}
+                  {item.label === "Blog" && (
+                    <span className="ml-2 inline-flex items-center rounded-full bg-white/20 px-2 py-0.5 text-xs font-bold">
+                      New
+                    </span>
+                  )}
                 </a>
               ))}
               <a

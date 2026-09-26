@@ -21,9 +21,9 @@ const experiences: Experience[] = [
     id: 1,
     period: "06/2022 — Present",
     company: "TechRA Learning Center",
-    role: "Instructor, Web Development and Basic Programming and IELTS",
+    role: "Founder & Instructor, Web Development and Basic Programming and IELTS",
     description:
-      "Co-founded and instructed at a skill development institution in Noakhali, BD, teaching Basic Programming in Java and Web Development with PHP & React.",
+      "Founded and instructed at a skill development institution in Noakhali, BD, teaching Basic Programming in Java and Web Development with PHP & React.",
     achievements: [
       "Established curriculum and taught Basic Programming in Java to multiple cohorts",
       "Designed and delivered Web Development courses using PHP and React",
