@@ -942,6 +942,22 @@ export default function BlogPostPage({
   const t = translations[language];
   const post = blogPosts[language][postId as keyof typeof blogPosts.en];
 
+  if (!post) {
+    return (
+      <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold">Post not found</h1>
+          <Link
+            href="/blog"
+            className="mt-4 inline-block text-indigo-600 hover:text-indigo-500"
+          >
+            {t.backToBlog}
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
   const disqusShortname = "mhhaque-github-io"; // You'll need to set this up
   const disqusConfig = {
     url: `https://mhhaque.github.io/blog/${id}`,
@@ -986,22 +1002,6 @@ export default function BlogPostPage({
 
     trackView();
   }, [postId]);
-
-  if (!post) {
-    return (
-      <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold">Post not found</h1>
-          <Link
-            href="/blog"
-            className="mt-4 inline-block text-indigo-600 hover:text-indigo-500"
-          >
-            {t.backToBlog}
-          </Link>
-        </div>
-      </main>
-    );
-  }
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
