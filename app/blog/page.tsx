@@ -50,7 +50,7 @@ const translations = {
 const blogPosts = {
   en: [
     {
-      id: 4,
+      id: 1,
       title: "Why Do Government Services Feel So Slow?",
       excerpt:
         "Is job security creating an incentive problem in Bangladesh's public sector? Exploring the paradox of government employment and organizational performance.",
@@ -61,7 +61,7 @@ const blogPosts = {
       image: "/blog/blog-government.png",
     },
     {
-      id: 1,
+      id: 2,
       title: "Getting Started with Next.js 14",
       excerpt:
         "A comprehensive guide to building modern web applications with Next.js 14 and the App Router.",
@@ -70,7 +70,7 @@ const blogPosts = {
       category: "React",
     },
     {
-      id: 2,
+      id: 3,
       title: "TypeScript Best Practices for 2024",
       excerpt:
         "Learn the essential TypeScript patterns and practices that will improve your code quality.",
@@ -79,7 +79,7 @@ const blogPosts = {
       category: "TypeScript",
     },
     {
-      id: 3,
+      id: 4,
       title: "Building Scalable APIs with Node.js",
       excerpt:
         "Explore architectural patterns and best practices for creating production-ready Node.js APIs.",
