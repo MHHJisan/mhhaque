@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { Redis } from "@upstash/redis";
 import { cookies } from "next/headers";
 
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+console.log("Redis URL exists:", !!redisUrl);
+console.log("Redis token exists:", !!redisToken);
+
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
