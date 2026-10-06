@@ -901,4 +901,1115 @@ I'd love to hear your thoughts on this topic!
       `,
     },
   },
+  {
+    id: 2,
+    date: "2026-09-27",
+    image: "/images/blog/react-roadmap.jpg",
+    featured: false,
+
+    en: {
+      title:
+        "My React Learning Roadmap: From Hooks to Routing, State Management & Production",
+
+      excerpt:
+        "A structured look at my React learning journey—from Hooks and event handling to state management, routing, build processes, styling libraries, and production development.",
+
+      category: "React & Frontend Development",
+
+      readTime: "10 min",
+
+      content: `
+      <p>
+        When learning React, it is easy to focus only on creating components and making the UI work.
+        However, becoming comfortable with React development requires understanding much more than just components.
+      </p>
+
+      <p>
+        A real-world React application involves state management, event handling, conditional rendering,
+        routing, styling, build processes, deployment, and application architecture.
+      </p>
+
+      <p>
+        I recently organized my React learning roadmap into several important areas—from
+        <strong>Hooks and event handling to state management, build processes, styling libraries, and routing.</strong>
+      </p>
+
+      <p>
+        My goal is not simply to memorize React APIs, but to understand how these concepts work together
+        when building real applications.
+      </p>
+
+      <h2>1. React Hooks — The Foundation of Modern Functional Components</h2>
+
+      <p>
+        Hooks are one of the most important parts of modern React development.
+        They allow functional components to use state, effects, context, refs, and other React capabilities.
+      </p>
+
+      <h3>useState</h3>
+
+      <p>
+        <code>useState</code> allows a component to store information that can change over time.
+      </p>
+
+      <p>Common examples include:</p>
+
+      <ul>
+        <li>Form inputs</li>
+        <li>Counters</li>
+        <li>Modal visibility</li>
+        <li>Selected items</li>
+        <li>Loading states</li>
+        <li>UI preferences</li>
+      </ul>
+
+      <pre><code>const [count, setCount] = useState(0);</code></pre>
+
+      <p>
+        The important concept is understanding that state represents information that can affect
+        what the component renders.
+      </p>
+
+      <h3>useEffect</h3>
+
+      <p>
+        <code>useEffect</code> is used when a component needs to synchronize with something outside
+        of React.
+      </p>
+
+      <p>Examples include:</p>
+
+      <ul>
+        <li>Fetching data</li>
+        <li>Working with browser APIs</li>
+        <li>Setting up timers</li>
+        <li>Subscribing to external systems</li>
+        <li>Integrating with external libraries</li>
+      </ul>
+
+      <p>
+        One important lesson is that <strong>useEffect should not automatically be used for every piece of logic.</strong>
+        Understanding when an Effect is actually necessary can make an application much simpler.
+      </p>
+
+      <h3>useReducer</h3>
+
+      <p>
+        When state logic becomes more complicated, <code>useReducer</code> can provide a more structured
+        approach to managing state transitions.
+      </p>
+
+      <pre><code>dispatch({
+  type: "SUCCESS",
+  payload: data
+});</code></pre>
+
+      <p>
+        It becomes particularly useful when multiple state values are connected to the same user action.
+      </p>
+
+      <h3>useContext</h3>
+
+      <p>
+        Context allows information to be shared with components without manually passing props through
+        every intermediate component.
+      </p>
+
+      <p>Common examples include:</p>
+
+      <ul>
+        <li>Authentication</li>
+        <li>Theme</li>
+        <li>Language</li>
+        <li>User information</li>
+        <li>Application configuration</li>
+      </ul>
+
+      <p>
+        However, Context is not automatically a replacement for every state-management solution.
+        The important part is understanding where shared state actually belongs.
+      </p>
+
+      <h3>useCallback</h3>
+
+      <p>
+        <code>useCallback</code> allows a function definition to be cached between renders.
+        It can be useful when passing callbacks to memoized child components or in specific
+        performance-sensitive situations.
+      </p>
+
+      <p>
+        But it should not be added everywhere simply because it sounds like an optimization.
+      </p>
+
+      <h3>useMemo</h3>
+
+      <p>
+        <code>useMemo</code> can cache the result of an expensive calculation.
+      </p>
+
+      <pre><code>const filteredProducts = useMemo(() => {
+  return products.filter(
+    product => product.category === selectedCategory
+  );
+}, [products, selectedCategory]);</code></pre>
+
+      <p>
+        The important question is not just "Can I use useMemo here?"
+        but rather "Is there actually expensive work that benefits from memoization?"
+      </p>
+
+      <h3>useRef</h3>
+
+      <p>
+        <code>useRef</code> allows a component to hold a value that persists between renders
+        without causing a re-render when that value changes.
+      </p>
+
+      <p>It is commonly used for:</p>
+
+      <ul>
+        <li>Accessing DOM elements</li>
+        <li>Storing timer IDs</li>
+        <li>Keeping mutable values between renders</li>
+        <li>Working with browser APIs</li>
+      </ul>
+
+      <h3>useImperativeHandle</h3>
+
+      <p>
+        <code>useImperativeHandle</code> allows a component to customize what it exposes through a ref.
+        It is less common than some other Hooks, but it is useful to understand for advanced React development.
+      </p>
+
+      <h3>useLayoutEffect</h3>
+
+      <p>
+        <code>useLayoutEffect</code> is related to <code>useEffect</code>, but it runs before the browser
+        repaints. It can be useful for DOM measurements, layout calculations, and certain visual integrations.
+      </p>
+
+      <h2>2. The Rules of Hooks</h2>
+
+      <p>
+        Learning Hooks is not only about memorizing their names. It is equally important to understand
+        where Hooks can and cannot be called.
+      </p>
+
+      <p>For example, this is incorrect:</p>
+
+      <pre><code>if (isLoggedIn) {
+  const [user, setUser] = useState(null);
+}</code></pre>
+
+      <p>
+        Hooks should be called at the top level of a React component or custom Hook.
+        They should not be called inside conditions, loops, nested functions, or after conditional returns.
+      </p>
+
+      <p>
+        Understanding this rule is especially important when debugging real React applications.
+      </p>
+
+      <h2>3. Event Handling in React</h2>
+
+      <p>
+        User interaction is at the center of most web applications. Buttons, forms, inputs,
+        keyboard actions, and mouse interactions all generate events that our application needs to handle.
+      </p>
+
+      <pre><code>function Button() {
+  const handleClick = () => {
+    console.log("Button clicked");
+  };
+
+  return (
+    &lt;button onClick={handleClick}&gt;
+      Click Me
+    &lt;/button&gt;
+  );
+}</code></pre>
+
+      <p>Some commonly used React events include:</p>
+
+      <ul>
+        <li><code>onClick</code></li>
+        <li><code>onChange</code></li>
+        <li><code>onSubmit</code></li>
+        <li><code>onMouseEnter</code></li>
+        <li><code>onKeyDown</code></li>
+      </ul>
+
+      <p>
+        Understanding event handling in both functional and class components is also useful,
+        especially when working with existing or legacy React codebases.
+      </p>
+
+      <h2>4. Conditional Rendering</h2>
+
+      <p>
+        Real applications rarely display the same UI all the time.
+        A user can be logged in, logged out, loading, an administrator, or viewing an empty or error state.
+      </p>
+
+      <h3>if statement</h3>
+
+      <pre><code>if (isLoading) {
+  return &lt;Loading /&gt;;
+}
+
+return &lt;Dashboard /&gt;;</code></pre>
+
+      <h3>Ternary Operator</h3>
+
+      <pre><code>return isLoggedIn
+  ? &lt;Dashboard /&gt;
+  : &lt;Login /&gt;;</code></pre>
+
+      <h3>Logical AND Operator</h3>
+
+      <pre><code>{isAdmin && &lt;AdminPanel /&gt;}</code></pre>
+
+      <p>
+        The goal is not simply to know these syntaxes, but to understand which approach
+        makes the UI logic easier to read and maintain.
+      </p>
+
+      <h2>5. Build and Development</h2>
+
+      <p>
+        Writing React code is only one part of development.
+        An application eventually needs to be developed, tested, built, and deployed.
+      </p>
+
+      <h3>Create React App</h3>
+
+      <p>
+        Create React App was historically one of the common ways to start React projects.
+        The React ecosystem has since evolved, and modern projects commonly use other tooling and frameworks.
+      </p>
+
+      <h3>Production Builds</h3>
+
+      <p>
+        Development and production environments are different.
+        Production builds generally involve optimizing JavaScript, bundling assets, minifying code,
+        handling environment variables, and preparing the application for deployment.
+      </p>
+
+      <p>
+        Understanding what happens between development and production is an important part of becoming
+        a well-rounded frontend developer.
+      </p>
+
+      <h3>Development Strategies</h3>
+
+      <ul>
+        <li>Development vs production environments</li>
+        <li>Environment variables</li>
+        <li>Build configuration</li>
+        <li>Deployment</li>
+        <li>Error handling</li>
+        <li>Performance</li>
+        <li>CI/CD</li>
+      </ul>
+
+      <h2>6. Frameworks and Styling Libraries</h2>
+
+      <p>
+        The React ecosystem provides different approaches to styling applications.
+        Two concepts I am exploring are Styled Components and CSS Modules.
+      </p>
+
+      <h3>Styled Components</h3>
+
+      <p>
+        Styled Components allows styles to be written closely alongside components,
+        making the styling more component-oriented.
+      </p>
+
+      <h3>CSS Modules</h3>
+
+      <p>
+        CSS Modules provide locally scoped CSS classes and help avoid unwanted global CSS conflicts.
+      </p>
+
+      <pre><code>.button {
+  background: black;
+}</code></pre>
+
+      <p>
+        Understanding different styling approaches is useful because every React codebase
+        uses the same styling architecture.
+      </p>
+
+      <h2>7. State Management Libraries</h2>
+
+      <p>
+        As an application grows, state management becomes increasingly important.
+        React provides tools such as useState, useReducer, and Context, but larger applications
+        may also use dedicated state-management libraries.
+      </p>
+
+      <h3>Redux</h3>
+
+      <p>
+        Redux provides a structured approach to managing shared application state.
+      </p>
+
+      <p>Consider an e-commerce application:</p>
+
+      <pre><code>Navbar
+   ↓
+Cart Count
+
+Product Page
+   ↓
+Add Product
+
+Cart Page
+   ↓
+Remove Product
+
+Checkout
+   ↓
+Read Cart</code></pre>
+
+      <p>
+        The cart state is shared by different parts of the application.
+        This is a practical situation where global state management can make sense.
+      </p>
+
+      <p>
+        However, I do not think every piece of state should automatically go into Redux.
+        Component-specific UI state can often remain local to the component.
+      </p>
+
+      <h3>MobX</h3>
+
+      <p>
+        MobX takes a different approach to state management and focuses heavily on reactive state.
+      </p>
+
+      <p>
+        Learning different state-management approaches helps me understand that there is
+        no single solution for every application.
+      </p>
+
+      <h2>8. Routing Libraries</h2>
+
+      <p>
+        Most modern web applications contain multiple pages or views.
+      </p>
+
+      <pre><code>/
+ /about
+ /products
+ /products/123
+ /cart
+ /checkout
+ /login
+ /dashboard</code></pre>
+
+      <p>
+        Routing determines which component should be displayed for a particular URL.
+      </p>
+
+      <h3>React Router</h3>
+
+      <p>
+        React Router is a widely used routing solution in the React ecosystem.
+        It provides concepts such as routes, nested routes, dynamic parameters, navigation,
+        links, and different approaches to handling protected routes.
+      </p>
+
+      <pre><code>&lt;Route
+  path="/products/:id"
+  element={&lt;ProductDetails /&gt;}
+/&gt;</code></pre>
+
+      <p>
+        Here, the dynamic <code>id</code> parameter can be used to identify a specific product.
+      </p>
+
+      <h3>Reach Router</h3>
+
+      <p>
+        Reach Router was another routing library in the React ecosystem.
+        Its work was eventually consolidated into React Router, so for modern projects,
+        understanding current React Router patterns is more relevant.
+      </p>
+
+      <h2>9. Connecting Everything Together</h2>
+
+      <p>
+        Looking at these topics individually can make React feel like a collection of APIs:
+      </p>
+
+      <pre><code>useState
+useEffect
+useReducer
+useContext
+useCallback
+useMemo
+useRef
+useImperativeHandle
+useLayoutEffect</code></pre>
+
+      <p>
+        But the real objective is not memorizing these APIs.
+        It is understanding how they work together.
+      </p>
+
+      <pre><code>User Interaction
+       ↓
+Event Handler
+       ↓
+State Update
+       ↓
+React Re-render
+       ↓
+Conditional Rendering
+       ↓
+Updated UI</code></pre>
+
+      <p>
+        As the application becomes larger, the picture expands:
+      </p>
+
+      <pre><code>React Components
+       ↓
+Local State
+       ↓
+Shared State
+       ↓
+State Management
+       ↓
+Routing
+       ↓
+API Integration
+       ↓
+Build
+       ↓
+Deployment</code></pre>
+
+      <h2>10. My Biggest Takeaway</h2>
+
+      <p>
+        One thing I am realizing while studying React is that <strong>learning a framework
+        is not about memorizing APIs.</strong>
+      </p>
+
+      <p>
+        Knowing what <code>useMemo</code> does is useful.
+        But knowing when not to use <code>useMemo</code> can be even more valuable.
+      </p>
+
+      <p>
+        Knowing Redux is useful.
+        But knowing when React's local state is already enough is more important.
+      </p>
+
+      <p>
+        Knowing <code>useEffect</code> is essential.
+        But understanding when an Effect is unnecessary can prevent a lot of unnecessary complexity.
+      </p>
+
+      <p>
+        Knowing routing is important.
+        But understanding how routing fits into the overall application architecture
+        is what makes the knowledge practical.
+      </p>
+
+      <h2>My Current Goal</h2>
+
+      <p>
+        So my goal is not simply:
+      </p>
+
+      <blockquote>
+        <p><strong>"Learn React."</strong></p>
+      </blockquote>
+
+      <p>
+        My goal is:
+      </p>
+
+      <blockquote>
+        <p>
+          <strong>
+            "Understand how to design, build, maintain, and scale React applications."
+          </strong>
+        </p>
+      </blockquote>
+
+      <p>
+        One concept at a time.<br />
+        One project at a time.<br />
+        One problem at a time.
+      </p>
+
+      <p>
+        That is the direction I am taking with my React learning journey. 🚀
+      </p>
+    `,
+    },
+
+    bn: {
+      title:
+        "আমার React শেখার রোডম্যাপ: Hooks থেকে Routing, State Management এবং Production পর্যন্ত",
+
+      excerpt:
+        "Hooks, Event Handling থেকে শুরু করে State Management, Routing, Styling, Build Process এবং Production Development পর্যন্ত আমার React শেখার একটি structured roadmap।",
+
+      category: "React ও Frontend Development",
+
+      readTime: "১০ মিনিট",
+
+      content: `
+      <p>
+        React শেখার সময় শুধু Component তৈরি করা এবং UI দেখাতে পারলেই React শেখা সম্পূর্ণ হয় না।
+        একটি বাস্তব React application তৈরি করতে হলে Hooks, State Management, Event Handling,
+        Conditional Rendering, Routing, Styling, Build Process এবং Application Architecture সম্পর্কে
+        পরিষ্কার ধারণা থাকা প্রয়োজন।
+      </p>
+
+      <p>
+        সম্প্রতি আমি আমার React শেখার বিষয়গুলোকে একটি roadmap হিসেবে সাজাচ্ছি।
+        এর মধ্যে রয়েছে <strong>Hooks থেকে শুরু করে Event Handling, State Management,
+        Build Process, Styling Libraries এবং Routing</strong> পর্যন্ত বিভিন্ন গুরুত্বপূর্ণ বিষয়।
+      </p>
+
+      <p>
+        আমার লক্ষ্য শুধু React-এর syntax মুখস্থ করা নয়।
+        বরং এই concept-গুলো বাস্তব application-এ কীভাবে একসাথে কাজ করে,
+        সেটি বোঝা।
+      </p>
+
+      <h2>১. React Hooks — Modern Functional Components-এর ভিত্তি</h2>
+
+      <p>
+        Modern React development-এর সবচেয়ে গুরুত্বপূর্ণ বিষয়গুলোর একটি হলো <strong>Hooks</strong>।
+        Hooks-এর মাধ্যমে functional component-এর মধ্যে state, effects, context, refs
+        এবং অন্যান্য React functionality ব্যবহার করা যায়।
+      </p>
+
+      <h3>useState</h3>
+
+      <p>
+        <code>useState</code> component-এর এমন data সংরক্ষণ করতে ব্যবহার করা হয়,
+        যেটা সময়ের সাথে পরিবর্তিত হতে পারে।
+      </p>
+
+      <p>যেমন:</p>
+
+      <ul>
+        <li>Form input</li>
+        <li>Counter</li>
+        <li>Modal visibility</li>
+        <li>Selected item</li>
+        <li>Loading state</li>
+        <li>UI preferences</li>
+      </ul>
+
+      <pre><code>const [count, setCount] = useState(0);</code></pre>
+
+      <p>
+        এখানে গুরুত্বপূর্ণ বিষয় হলো বোঝা যে state এমন information,
+        যার পরিবর্তনের কারণে component-এর UI-তেও পরিবর্তন আসতে পারে।
+      </p>
+
+      <h3>useEffect</h3>
+
+      <p>
+        <code>useEffect</code> সাধারণত component-এর বাইরে থাকা কোনো system বা operation-এর
+        সাথে synchronize করার জন্য ব্যবহার করা হয়।
+      </p>
+
+      <p>যেমন:</p>
+
+      <ul>
+        <li>API থেকে data fetch করা</li>
+        <li>Browser API ব্যবহার করা</li>
+        <li>Timer তৈরি করা</li>
+        <li>External subscription</li>
+        <li>Third-party library-এর সাথে কাজ করা</li>
+      </ul>
+
+      <p>
+        তবে একটি গুরুত্বপূর্ণ বিষয় হলো,
+        <strong>প্রতিটি কাজের জন্য useEffect ব্যবহার করা উচিত নয়।</strong>
+        কখন Effect প্রয়োজন এবং কখন প্রয়োজন নেই—এটি বোঝা application-এর complexity কমাতে সাহায্য করে।
+      </p>
+
+      <h3>useReducer</h3>
+
+      <p>
+        State logic যখন complex হয়ে যায়, তখন <code>useReducer</code>
+        state management-কে আরও structured করতে পারে।
+      </p>
+
+      <pre><code>dispatch({
+  type: "SUCCESS",
+  payload: data
+});</code></pre>
+
+      <p>
+        বিশেষ করে একটি user action-এর কারণে যখন একাধিক state পরিবর্তন হয়,
+        তখন <code>useReducer</code> বেশ কার্যকর হতে পারে।
+      </p>
+
+      <h3>useContext</h3>
+
+      <p>
+        Component tree-এর অনেক গভীরে কোনো information পাঠানোর প্রয়োজন হলে
+        বারবার props pass না করে Context ব্যবহার করা যায়।
+      </p>
+
+      <p>যেমন:</p>
+
+      <ul>
+        <li>Authentication</li>
+        <li>Theme</li>
+        <li>Language</li>
+        <li>User information</li>
+        <li>Application configuration</li>
+      </ul>
+
+      <p>
+        তবে Context মানেই সব ধরনের global state-এর জন্য ব্যবহার করতে হবে—এমন নয়।
+        কোন state কোথায় রাখা উচিত, সেটাও React শেখার গুরুত্বপূর্ণ অংশ।
+      </p>
+
+      <h3>useCallback</h3>
+
+      <p>
+        <code>useCallback</code> একটি function definition-কে render-এর মধ্যে cache করে রাখতে সাহায্য করে।
+        বিশেষ কিছু performance-sensitive পরিস্থিতিতে এটি useful হতে পারে।
+      </p>
+
+      <p>
+        তবে শুধু optimization-এর জন্য সব জায়গায় <code>useCallback</code> ব্যবহার করা উচিত নয়।
+      </p>
+
+      <h3>useMemo</h3>
+
+      <p>
+        <code>useMemo</code> কোনো expensive calculation-এর result cache করে রাখতে সাহায্য করতে পারে।
+      </p>
+
+      <pre><code>const filteredProducts = useMemo(() => {
+  return products.filter(
+    product => product.category === selectedCategory
+  );
+}, [products, selectedCategory]);</code></pre>
+
+      <p>
+        তাই প্রশ্ন শুধু এটা নয় যে "এখানে useMemo ব্যবহার করা যাবে কি না?"
+        বরং প্রশ্ন হওয়া উচিত:
+        <strong>"এখানে কি আসলেই এমন expensive calculation আছে যার জন্য memoization প্রয়োজন?"</strong>
+      </p>
+
+      <h3>useRef</h3>
+
+      <p>
+        <code>useRef</code> এমন একটি value ধরে রাখতে পারে যা component-এর re-render ঘটায় না।
+      </p>
+
+      <p>এটি ব্যবহার করা হয়:</p>
+
+      <ul>
+        <li>DOM element access করতে</li>
+        <li>Timer ID রাখতে</li>
+        <li>Mutable value ধরে রাখতে</li>
+        <li>Browser API-এর সাথে কাজ করতে</li>
+      </ul>
+
+      <h3>useImperativeHandle</h3>
+
+      <p>
+        <code>useImperativeHandle</code> ব্যবহার করে component তার ref-এর মাধ্যমে
+        parent component-এর কাছে কী expose করবে তা customize করা যায়।
+        এটি সাধারণ Hooks-এর তুলনায় কম ব্যবহৃত হলেও advanced React development-এর জন্য ধারণাটি গুরুত্বপূর্ণ।
+      </p>
+
+      <h3>useLayoutEffect</h3>
+
+      <p>
+        <code>useLayoutEffect</code> অনেকটা <code>useEffect</code>-এর মতো হলেও
+        browser repaint-এর আগে কাজ করতে পারে।
+        এটি DOM measurement, layout calculation এবং কিছু visual integration-এর ক্ষেত্রে useful হতে পারে।
+      </p>
+
+      <h2>২. Hooks ব্যবহারের নিয়ম</h2>
+
+      <p>
+        Hooks-এর নাম জানা যথেষ্ট নয়।
+        কোথায় এবং কীভাবে Hooks ব্যবহার করা যায় সেটাও জানা জরুরি।
+      </p>
+
+      <p>যেমন এটি ভুল:</p>
+
+      <pre><code>if (isLoggedIn) {
+  const [user, setUser] = useState(null);
+}</code></pre>
+
+      <p>
+        Hooks সাধারণত React component বা custom Hook-এর top level-এ call করতে হয়।
+        Condition, loop, nested function বা conditional return-এর পরে Hooks call করা উচিত নয়।
+      </p>
+
+      <p>
+        বাস্তব React application-এ debugging করার সময় এই বিষয়টি অত্যন্ত গুরুত্বপূর্ণ।
+      </p>
+
+      <h2>৩. React-এ Event Handling</h2>
+
+      <p>
+        User interaction প্রায় প্রতিটি web application-এর একটি গুরুত্বপূর্ণ অংশ।
+        Button click, form submit, input change, keyboard action এবং mouse interaction—
+        সবকিছুর জন্য event handling প্রয়োজন।
+      </p>
+
+      <pre><code>function Button() {
+  const handleClick = () => {
+    console.log("Button clicked");
+  };
+
+  return (
+    &lt;button onClick={handleClick}&gt;
+      Click Me
+    &lt;/button&gt;
+  );
+}</code></pre>
+
+      <p>কিছু গুরুত্বপূর্ণ React event হলো:</p>
+
+      <ul>
+        <li><code>onClick</code></li>
+        <li><code>onChange</code></li>
+        <li><code>onSubmit</code></li>
+        <li><code>onMouseEnter</code></li>
+        <li><code>onKeyDown</code></li>
+      </ul>
+
+      <p>
+        Functional component-এর পাশাপাশি existing বা legacy React codebase-এর জন্য
+        class component-এর event handling বোঝাও কাজে আসতে পারে।
+      </p>
+
+      <h2>৪. Conditional Rendering</h2>
+
+      <p>
+        বাস্তব application-এ সবসময় একই UI দেখানো হয় না।
+        একজন user logged in, logged out, loading অবস্থায়, admin অথবা error/empty state-এ থাকতে পারে।
+      </p>
+
+      <h3>if statement</h3>
+
+      <pre><code>if (isLoading) {
+  return &lt;Loading /&gt;;
+}
+
+return &lt;Dashboard /&gt;;</code></pre>
+
+      <h3>Ternary Operator</h3>
+
+      <pre><code>return isLoggedIn
+  ? &lt;Dashboard /&gt;
+  : &lt;Login /&gt;;</code></pre>
+
+      <h3>Logical AND Operator</h3>
+
+      <pre><code>{isAdmin && &lt;AdminPanel /&gt;}</code></pre>
+
+      <p>
+        লক্ষ্য শুধু syntax জানা নয়।
+        কোন পরিস্থিতিতে কোন approach ব্যবহার করলে code আরও readable এবং maintainable হবে,
+        সেটি বোঝাও গুরুত্বপূর্ণ।
+      </p>
+
+      <h2>৫. Build এবং Development</h2>
+
+      <p>
+        React application-এর code লেখা development-এর একটি অংশ মাত্র।
+        Application-কে develop, test, build এবং শেষ পর্যন্ত production-এ deploy করতে হয়।
+      </p>
+
+      <h3>Create React App</h3>
+
+      <p>
+        Create React App একসময় React project শুরু করার জন্য বহুল ব্যবহৃত tool ছিল।
+        React ecosystem সময়ের সাথে পরিবর্তিত হয়েছে এবং বর্তমানে নতুন project-এর জন্য
+        বিভিন্ন modern tooling ও framework ব্যবহৃত হয়।
+      </p>
+
+      <h3>Production Build</h3>
+
+      <p>
+        Development এবং production environment এক নয়।
+        Production build-এর সময় সাধারণত JavaScript optimize করা,
+        assets bundle করা, code minify করা, environment variables handle করা
+        এবং deployment-এর জন্য application প্রস্তুত করা হয়।
+      </p>
+
+      <p>
+        Development থেকে production deployment পর্যন্ত কী ঘটে,
+        সেটি বোঝা একজন frontend developer-এর জন্য গুরুত্বপূর্ণ।
+      </p>
+
+      <h3>Development Strategies</h3>
+
+      <ul>
+        <li>Development বনাম Production environment</li>
+        <li>Environment variables</li>
+        <li>Build configuration</li>
+        <li>Deployment</li>
+        <li>Error handling</li>
+        <li>Performance</li>
+        <li>CI/CD</li>
+      </ul>
+
+      <h2>৬. Frameworks এবং Styling Libraries</h2>
+
+      <p>
+        React application style করার জন্য বিভিন্ন approach রয়েছে।
+        আমার roadmap-এর একটি অংশ হলো Styled Components এবং CSS Modules সম্পর্কে শেখা।
+      </p>
+
+      <h3>Styled Components</h3>
+
+      <p>
+        Styled Components-এর মাধ্যমে component-এর সাথে styling closely associate করা যায়।
+        এতে styling আরও component-oriented হতে পারে।
+      </p>
+
+      <h3>CSS Modules</h3>
+
+      <p>
+        CSS Modules locally scoped CSS class ব্যবহার করতে সাহায্য করে
+        এবং unwanted global CSS conflict কমাতে পারে।
+      </p>
+
+      <pre><code>.button {
+  background: black;
+}</code></pre>
+
+      <p>
+        বিভিন্ন styling approach সম্পর্কে জানা useful,
+        কারণ প্রতিটি React project একই styling architecture ব্যবহার করে না।
+      </p>
+
+      <h2>৭. State Management Libraries</h2>
+
+      <p>
+        Application বড় হওয়ার সাথে সাথে state management আরও গুরুত্বপূর্ণ হয়ে ওঠে।
+        React নিজেই <code>useState</code>, <code>useReducer</code> এবং Context-এর মতো tools দেয়।
+        তবে বড় application-এ dedicated state-management library ব্যবহার করা হতে পারে।
+      </p>
+
+      <h3>Redux</h3>
+
+      <p>
+        Redux shared application state manage করার জন্য একটি structured approach দেয়।
+      </p>
+
+      <p>ধরা যাক একটি e-commerce application:</p>
+
+      <pre><code>Navbar
+   ↓
+Cart Count
+
+Product Page
+   ↓
+Add Product
+
+Cart Page
+   ↓
+Remove Product
+
+Checkout
+   ↓
+Read Cart</code></pre>
+
+      <p>
+        এখানে cart state application-এর বিভিন্ন অংশে প্রয়োজন হচ্ছে।
+        এই ধরনের পরিস্থিতিতে global state management যুক্তিযুক্ত হতে পারে।
+      </p>
+
+      <p>
+        তবে প্রতিটি state automatically Redux-এ রাখা প্রয়োজন নেই।
+        Component-specific UI state অনেক সময় component-এর local state হিসেবেই রাখা যথেষ্ট।
+      </p>
+
+      <h3>MobX</h3>
+
+      <p>
+        MobX state management-এর জন্য ভিন্ন ধরনের reactive approach অনুসরণ করে।
+      </p>
+
+      <p>
+        বিভিন্ন state-management solution শেখার মাধ্যমে আমি বুঝতে পারছি যে
+        প্রতিটি application-এর জন্য একই solution প্রয়োজন হয় না।
+      </p>
+
+      <h2>৮. Routing Libraries</h2>
+
+      <p>
+        অধিকাংশ modern web application-এ একাধিক page বা view থাকে।
+      </p>
+
+      <pre><code>/
+ /about
+ /products
+ /products/123
+ /cart
+ /checkout
+ /login
+ /dashboard</code></pre>
+
+      <p>
+        Routing নির্ধারণ করে কোন URL-এর জন্য কোন component display হবে।
+      </p>
+
+      <h3>React Router</h3>
+
+      <p>
+        React Router React ecosystem-এর একটি পরিচিত routing solution।
+        এর মাধ্যমে routes, nested routes, dynamic parameters, navigation,
+        links এবং বিভিন্ন protected-route pattern নিয়ে কাজ করা যায়।
+      </p>
+
+      <pre><code>&lt;Route
+  path="/products/:id"
+  element={&lt;ProductDetails /&gt;}
+/&gt;</code></pre>
+
+      <p>
+        এখানে URL-এর dynamic <code>id</code> ব্যবহার করে নির্দিষ্ট product-এর information দেখানো যেতে পারে।
+      </p>
+
+      <h3>Reach Router</h3>
+
+      <p>
+        Reach Router React ecosystem-এর একটি routing library ছিল।
+        পরবর্তীতে এর কাজ React Router-এর সাথে একীভূত হয়েছে।
+        তাই নতুন project-এর ক্ষেত্রে বর্তমান React Router architecture শেখাই বেশি relevant।
+      </p>
+
+      <h2>৯. সবকিছু একসাথে কীভাবে কাজ করে</h2>
+
+      <p>
+        এই বিষয়গুলো আলাদাভাবে পড়লে React-কে অনেকগুলো API-এর collection মনে হতে পারে:
+      </p>
+
+      <pre><code>useState
+useEffect
+useReducer
+useContext
+useCallback
+useMemo
+useRef
+useImperativeHandle
+useLayoutEffect</code></pre>
+
+      <p>
+        কিন্তু আসল লক্ষ্য এগুলো মুখস্থ করা নয়।
+        বরং এগুলো কীভাবে একসাথে কাজ করে সেটি বোঝা।
+      </p>
+
+      <pre><code>User Interaction
+       ↓
+Event Handler
+       ↓
+State Update
+       ↓
+React Re-render
+       ↓
+Conditional Rendering
+       ↓
+Updated UI</code></pre>
+
+      <p>
+        Application বড় হওয়ার সাথে সাথে picture আরও বড় হয়:
+      </p>
+
+      <pre><code>React Components
+       ↓
+Local State
+       ↓
+Shared State
+       ↓
+State Management
+       ↓
+Routing
+       ↓
+API Integration
+       ↓
+Build
+       ↓
+Deployment</code></pre>
+
+      <h2>১০. এই Roadmap থেকে আমার সবচেয়ে বড় উপলব্ধি</h2>
+
+      <p>
+        React শেখার সময় আমি একটি বিষয় বুঝতে পারছি:
+        <strong>কোনো framework শেখা মানে শুধু API মুখস্থ করা নয়।</strong>
+      </p>
+
+      <p>
+        <code>useMemo</code> কী করে জানা গুরুত্বপূর্ণ।
+        কিন্তু কখন <code>useMemo</code> ব্যবহার না করাই ভালো, সেটাও জানা গুরুত্বপূর্ণ।
+      </p>
+
+      <p>
+        Redux জানা গুরুত্বপূর্ণ।
+        কিন্তু কখন React-এর local state-ই যথেষ্ট, সেটি বোঝা আরও গুরুত্বপূর্ণ।
+      </p>
+
+      <p>
+        <code>useEffect</code> জানা প্রয়োজন।
+        কিন্তু কখন কোনো Effect-এর প্রয়োজনই নেই, সেটি বোঝা application-এর unnecessary complexity কমাতে পারে।
+      </p>
+
+      <p>
+        Routing জানা গুরুত্বপূর্ণ।
+        কিন্তু routing কীভাবে পুরো application architecture-এর সাথে কাজ করে,
+        সেটি বোঝাই practical knowledge তৈরি করে।
+      </p>
+
+      <h2>আমার বর্তমান লক্ষ্য</h2>
+
+      <p>
+        তাই আমার লক্ষ্য শুধু:
+      </p>
+
+      <blockquote>
+        <p><strong>"React শেখা।"</strong></p>
+      </blockquote>
+
+      <p>
+        বরং আমার লক্ষ্য:
+      </p>
+
+      <blockquote>
+        <p>
+          <strong>
+            "React ব্যবহার করে কীভাবে ভালোভাবে application design, build, maintain এবং scale করা যায়—সেটা শেখা।"
+          </strong>
+        </p>
+      </blockquote>
+
+      <p>
+        একটি concept করে।<br />
+        একটি project করে।<br />
+        একটি problem করে।
+      </p>
+
+      <p>
+        এভাবেই আমার React learning journey এগিয়ে নিতে চাই। 🚀
+      </p>
+    `,
+    },
+  },
 ];
