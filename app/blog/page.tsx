@@ -12,7 +12,7 @@ import {
   FiEye,
 } from "react-icons/fi";
 
-import { blogPosts } from "../data/blogPosts.new";
+import { blogPosts } from "../data/blogPosts";
 
 const translations = {
   en: {
@@ -27,6 +27,7 @@ const translations = {
     typescript: "TypeScript",
     backend: "Backend",
     publicPolicy: "Public Policy",
+    teaching: "Teaching",
     featured: "Featured",
     yourVisits: "Total readers",
     visits: "readers",
@@ -43,6 +44,7 @@ const translations = {
     typescript: "TypeScript",
     backend: "ব্যাকএন্ড",
     publicPolicy: "পাবলিক পলিসি",
+    teaching: "শিক্ষা",
     featured: "বৈশিষ্ট্যযুক্ত",
     yourVisits: "মোট পাঠক",
     visits: "জন পড়েছেন",
@@ -57,11 +59,11 @@ export default function BlogPage() {
     id: post.id,
     title: post[language].title,
     excerpt: post[language].excerpt,
-    date: post[language].date,
+    date: post.date,
     readTime: post[language].readTime,
     category: post[language].category,
     featured: post.featured ?? false,
-    image: post.image,
+    image: post[language].image,
   }));
 
   const featuredPost = posts.find((post) => post.featured);
@@ -213,7 +215,17 @@ export default function BlogPage() {
                 </p>
 
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">
+                  <span
+                    className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
+                      featuredPost.category === "Teaching" ||
+                      featuredPost.category === "শিক্ষা"
+                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                        : featuredPost.category === "Public Policy" ||
+                            featuredPost.category === "পাবলিক পলিসি"
+                          ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300"
+                          : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                    }`}
+                  >
                     {featuredPost.category}
                   </span>
 
@@ -272,7 +284,16 @@ export default function BlogPage() {
                 </p>
 
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-medium text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300">
+                  <span
+                    className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${
+                      post.category === "Teaching" || post.category === "শিক্ষা"
+                        ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                        : post.category === "Public Policy" ||
+                            post.category === "পাবলিক পলিসি"
+                          ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300"
+                          : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                    }`}
+                  >
                     {post.category}
                   </span>
 

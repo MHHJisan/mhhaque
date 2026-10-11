@@ -28,6 +28,7 @@ import ProjectsSection from "./components/ProjectsSection";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
 import ServicesSection from "./components/ServicesSection";
+import TeachingSection from "./components/TeachingSection";
 
 type Service = {
   id: number;
@@ -189,6 +190,7 @@ const navItems = [
 
   { href: "#projects", label: "Projects" },
 
+  { href: "#teaching", label: "Teaching" },
   { href: "/blog", label: "Blog" },
   { href: "#services", label: "Services" },
   { href: "#contact", label: "Contact" },
@@ -476,6 +478,8 @@ export default function Home() {
       <SkillsSection />
 
       <ProjectsSection />
+
+      <TeachingSection />
 
       <ServicesSection />
 

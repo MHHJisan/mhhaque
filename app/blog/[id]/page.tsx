@@ -105,17 +105,26 @@ export default function BlogPostPage({
       <article className="container mx-auto max-w-4xl px-4 py-8">
         {/* Featured image */}
         <div className="relative w-full h-[400px] mb-8 rounded-xl overflow-hidden">
-          <Image
+          {/* <Image
             src={post.image}
             alt={content.title}
             fill
             className="object-cover"
-          />
+          /> */}
         </div>
 
         {/* Category */}
         <div className="mb-4">
-          <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm">
+          <span
+            className={`inline-block px-3 py-1 rounded-full text-sm ${
+              content.category === "Teaching" || content.category === "শিক্ষা"
+                ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+                : content.category === "Public Policy" ||
+                    content.category === "পাবলিক পলিসি"
+                  ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300"
+                  : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+            }`}
+          >
             {content.category}
           </span>
         </div>
@@ -157,11 +166,40 @@ export default function BlogPostPage({
 
         {/* Article content */}
         <div
-          className="prose prose-lg max-w-none"
+          className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-gray-700 prose-strong:text-slate-900 dark:prose-p:text-gray-300 dark:prose-strong:text-white"
           dangerouslySetInnerHTML={{
             __html: content.content,
           }}
         />
+
+        {/* CTA for teaching post */}
+        {postId === 2 && (
+          <div className="mt-12 rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 p-8 dark:from-green-900/20 dark:to-emerald-900/20">
+            <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
+              {language === "en"
+                ? "I'd love to hear your thoughts on teaching and learning!"
+                : "শিক্ষা ও শেখার বিষয়ে আপনার চিন্তাভাবনা শুনতে আমি আগ্রহী!"}
+            </h3>
+            <p className="mb-6 text-slate-600 dark:text-slate-300">
+              {language === "en"
+                ? "What's your experience with learning skills vs. building learning capacity? Share your thoughts in the comments."
+                : "দক্ষতা শেখা এবং শেখার ক্ষমতা গড়ার বিষয়ে আপনার অভিজ্ঞতা কী? মন্তব্যে আপনার চিন্তাভাবনা শেয়ার করুন।"}
+            </p>
+            <a
+              href="https://www.linkedin.com/in/mhhaquejisan/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+            >
+              <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+              {language === "en"
+                ? "Connect on LinkedIn"
+                : "লিংকডইনে যোগাযোগ করুন"}
+            </a>
+          </div>
+        )}
 
         {/* Disqus */}
         <div className="mt-12">

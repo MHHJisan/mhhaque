@@ -4,12 +4,12 @@ export type BlogPostContent = {
   category: string;
   readTime: string;
   content: string;
+  image: string;
 };
 
 export type BlogPost = {
   id: number;
   date: string;
-  image: string;
   featured: boolean;
   en: BlogPostContent;
   bn: BlogPostContent;
@@ -17,14 +17,144 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 2,
+    date: "2024-10-11",
+    featured: true,
+    en: {
+      title:
+        "Shortcuts May Bring Quick Results, but Strong Foundations Build Lasting Success",
+      excerpt:
+        "In the world of technology, we often see new tools emerge, demand for particular skills rise, and promotions claiming that learning a specific technology is the fastest way to build a successful career.",
+      readTime: "10 min read",
+      category: "Teaching",
+      image: "/blog/Building_Strong_Foundation_en.png",
+      content: `**# Shortcuts May Bring Quick Results, but Strong Foundations Build Lasting Success
+
+In the world of technology, we often see a new tool emerge, demand for a particular skill rise, or a wave of promotions claiming that learning a specific technology is the fastest way to build a successful career.
+
+But after a while, something new takes its place. Markets change, the nature of work evolves, and even skills that once generated good income may gradually lose their demand.
+
+That is when an important question arises: **What have we actually learned?**
+
+Have we merely learned to use a few tools, or have we developed the ability to learn something new?
+
+The recent debate surrounding foreign worker recruitment and immigration programs involving technology companies in the United States has made me reflect on a broader question: Can the long-term success of a company or a professional depend entirely on a particular market, recruitment system, or business model?
+
+Any business model can face changes in government policies, market demand, and competition. Taking advantage of short-term opportunities is important, but there is no substitute for building long-term capabilities.
+
+**This is where I find myself thinking about my experience at TechRA Learning Center.**
+
+When I started offering technology skills development courses there, my goal was never limited to teaching a few software applications, demonstrating a handful of tools, or enrolling students, completing courses, and moving on to the next batch.
+
+I wanted students to understand technology, learn to think independently, solve problems through logical reasoning, and develop their skills on a strong foundation.
+
+Because the technology we teach today may be replaced by something more advanced tomorrow. A task that people perform manually today may become much faster and easier with AI tomorrow.
+
+If a student knows only how to use a particular tool, they may eventually fall behind. But if they understand how to learn something new, how to understand the principles behind it, and how to apply what they have learned in real situations, then new technology does not have to become a source of fear or uncertainty.
+
+Instead, it becomes another opportunity to learn and grow.
+
+## A Lesson I Learned at BRAC University
+
+During my time at BRAC University, one statement made a lasting impression on me.
+
+Anann Zia Sir once said in a class:
+
+*“University will never offer you a job, but it will show you or help you to learn an act to get a job or best suitable job!”*
+
+In other words, a university will not directly hand you a job. Rather, it should help you develop the ability to learn, build your capabilities, and find a job that suits you.
+
+After graduation, I have repeatedly seen the relevance of that statement in the lives of my friends and fellow classmates.
+
+Not everyone secured their dream job immediately. Not everyone found the position or salary they had hoped for. But, from what I have observed, all of them have found a way to move forward in their professional lives.
+
+One of the biggest lessons I take from this is that **the true value of education lies not only in immediate outcomes, but also in the ability to navigate an uncertain future.**
+
+The same principle applies to learning technology, building a career, running a business, and pursuing personal development.
+
+Shortcuts can sometimes deliver quick results. Simplified methods can also be effective. But a shortcut and an effective approach are not necessarily the same thing. And learning quickly does not mean learning superficially.
+
+Our goal should not be limited to meeting today's demands. We should also prepare ourselves for the changes that tomorrow may bring.
+
+A particular skill may help you access an opportunity today, but the ability to learn will help you discover and pursue opportunities in the future.
+
+**Develop your skills, but more importantly, learn how to learn.**
+
+Technology will change. Markets will change. The nature of work will change. But when your learning foundation is strong, your ability to adapt to those changes becomes much stronger.
+
+Because lasting success is not simply about knowing what works today. It is about developing the ability to understand, learn, and thrive in whatever comes next.`,
+    },
+    bn: {
+      title:
+        "শর্টকাটে দক্ষতা অর্জন করা যায়, কিন্তু দীর্ঘমেয়াদে টিকে থাকতে হলে প্রযোজন শক্ত ভিত্তি",
+      excerpt:
+        "প্রযুক্তির দুনিয়া আমরা প্রায়ই দেখি, নতুন কোনো টুল এসেছে, নতুন কোনো স্কিলের চাহিদা বেজেছে, কিংবা একটি নির্দিষ্ট প্রযুক্তি শিখলেই দ্রুত ক্যারিয়ার গজা সম্ভব—এমন প্রচারণা শুরু হয়েছে।",
+      readTime: "১০ মিনিটের পাঠ",
+      category: "শিক্ষা",
+      image: "/blog/Building_Strong_Foundations.png",
+      content: `**শর্টকাটে দক্ষতা অর্জন করা যায়, কিন্তু দীর্ঘমেয়াদে টিকে থাকতে হলে প্রযোজন শক্ত ভিত্তি**
+
+প্রযুক্তির দুনিয়া আমরা প্রায়ই দেখি, নতুন কোনো টুল এসেছে, নতুন কোনো স্কিলের চাহিদা বেজেছে, কিংবা একটি নির্দিষ্ট প্রযুক্তি শিখলেই দ্রুত ক্যারিয়ার গজা সম্ভব—এমন প্রচারণা শুরু হয়েছে।
+
+কিছুদিন পর সেই প্রযুক্তির জায়গায় অন্য কিছু আসে। বাজার বদলে যায়, কাজের ধরন বদলে যায়, এমনকি একসময় যে দক্ষতা দিয়ে ভালো আয করা যেত, সেটির চাহিদাও কমে যেতে পারে।
+
+তখন প্রশ্ন আসে, আমরা আসলে কী শিখেছি?
+
+কয়েকটি টুল ব্যবহার করতে শিখেছি, নাকি নতুন কিছু শেখার সক্ষমতা অর্জন করেছি?
+
+যুক্তরাষ্ট্রের প্রযুক্তি প্রতিষ্ঠানগুলোর বিদেশি কর্মী নিয়োগ ও অভিবাসন কর্মসূচি নিয়ে সাম্প্রতিক বিতর্ক আমাকে আবারও একটি বিষয় ভাবতে বাধ্য করেছে—কোনো প্রতিষ্ঠান বা পেশাজীবীর দীর্ঘমেয়াদি সক্ষমতা কি শুধু একটি নির্দিষ্ট বাজার, নিয়োগব্যবস্থা কিংবা ব্যবসায়িক মডেলের ওপর নির্ভর করে থাকতে পারে?
+
+যেকোনো ব্যবসায়িক মডেলই পরিবর্তিত নীতি, বাজারের চাহিদা ও প্রতিযোগিতার মুখোমুখি হতে পারে। তাই সাম্যিক সুযোগ কাজে লাগানো গুরুত্বপূর্ণ হলেও, দীর্ঘমেয়াদি সক্ষমতা গড়ে তোলার বিকল্প নেই।
+
+**এই জায়গাটিতেই আমার TechRA Learning Center-এর কথা মনে পড়ে।**
+
+আমি যখন সেখানে প্রযুক্তিগত দক্ষতা উন্নযনের বিভিন্ন কোর্স চালু করি, তখন আমার উদ্দেশ্য শুধু কয়েকটি সফটও্যার শেখানো, দু-একটি টুলের ব্যবহার দেখানো কিংবা শিক্ষার্থী ভর্তি করিয়ে কোর্স শেষ করে দেওয়ার মধ্যে সীমাবদ্ধ ছিল নাত।
+
+আমি চেয়েছিলাম, শিক্ষার্থীরা যেন প্রযুক্তিকে বোঝে, নিজেরা চিন্তা করতে শেখে, যুক্তি দিয়ে সমস্যা সমাধান করতে পারে এবং একটি শক্ত ভিত্তির ওপর নিজেদের দক্ষতা গড়ে তোলে।
+
+কারণ আজ যে প্রযুক্তি শেখানো হচ্ছে, আগামীকাল সেটির জায়গায় আরও উন্নত কিছু আসতে পারে। আজ যে কাজটি মানুষ হাতে করে করছে, আগামীকাল সেটি AI দিয়ে আরও দ্রুত করা সম্ভব হতে পারে।
+
+তখন শুধু একটি নির্দিষ্ট টুলের ব্যবহার জানা থাকলে একজন শিক্ষার্থী পিছিয়ে পজতে পারে। কিন্তু সে যদি জানে কীভাবে নতুন কিছু শিখতে হয়, কীভাবে সেটির কার্যপদ্ধতি বুঝতে হয এবং কীভাবে শেখা বিষটটি বাস্তবে প্রযোগ করতে হয়, তাহলে নতুন প্রযুক্তি তার জন্য শুধু ভয় বা অনিশ্চয়তার কারণ হয়ে থাকবে না।
+
+বরং সেটি হয়ে উঠবে নতুন কিছু শেখার আরেকটি সুযোগ।
+
+**BRAC University-তে পড়ার সময় একটি কথা আমার মনে গভীরভাবে দাগ কেটেছিল।**
+
+আননাজিয়াত স্যার একদিন ক্লাসে বলেছিলেন:
+
+*"University will never offer you a job, but it will show you or help you to learn an act to get a job or best suitable job!"*
+
+অর্থাৎ, বিশ্ববিদ্যালয় তোমাকে সরাসরি চাকরি দিয়ে দেবে না। বরং কীভাবে শেখা যায়, কীভাবে নিজের যোগ্যতা তৈরি করা যায় এবং কীভাবে নিজের জন্য উপযুক্ত কাজ খুঁজে নেওয়া যায়—সেই সক্ষমতা অর্জনে সাহায্য করবে।
+
+গ্র্যাজুয়েশনের পর আমার সহপাঠী ও বন্ধুদের দিকে তাকিয়ে আমি কথাটির বাস্তবতা বারবার অনুভব করেছি। সবাই হয়তো প্রথমেই পছন্দের চাকরি পায়নি, সবাই হয়তো কাঙ্ক্ষিত বেতন বা পদে পৌঁছাতে পারেনি। কিন্তু আমার পর্যবেক্ষণে, তারা প্রত্যেকেই কোনো না কোনোভাবে নিজেদের কর্মজীবনে এগিয়ে যাওয়ার পথ খুঁজে নিয়েছে।
+
+আমার কাছে এর একটি বড় শিক্ষা হলো, **শিক্ষার প্রকৃত মূল্য শুধু তাৎক্ষণিক ফলাফলে নয়; বরং ভিষ্যতের অনিশ্চয়তা মোকাবিলা করার সক্ষমতা তৈরিতে।**
+
+এই একই নীতি প্রযুক্তি শেখা, ক্যারিয়ার গজা, ব্যবসা পরিচালনা কিংবা ব্যক্তিগত উন্নয়—সব ক্ষেত্রেই প্রযোজ্য।
+
+শর্টকাট কখনো কখনো দ্রুত ফল দিতে পারে। সহজ পদ্ধতিও অনেক সময় কার্যকর হতে পারে। কিন্তু শর্টকাট আর কার্যকর পদ্ধতি এক জিনিস নট। আর দ্রুত শেখা মানেই অগভীরভাবে শেখা নট।
+
+আমাদের লক্ষ্য হওয়া উচিত শুধু আজকের চাহিদা পূরণ করা না; বরং আগামী দিনের পরিবর্তনের জন্যও নিজেকে প্রস্তুত করা।
+
+কারণ একটি নির্দিষ্ট দক্ষতা তোমাকে আজকের সুযোগের কাছে পৌঁছে দিতে পারে, কিন্তু শেখার ক্ষমতা তোমাকে আগামী দিনের সুযোগগুলো খুঁজে নিতে সাহায্য করবে।
+
+**দক্ষতা অর্জন করো, কিন্তু তার চেযেও গুরুত্বপূর্ণ—শিখতে শেখো।**
+
+প্রযুক্তি বদলাবে। বাজার বদলাবে। কাজের ধরন বদলাবে। কিন্তু শেখার ভিত্তি শক্ত হলে, পরিবর্তনের সঙ্গে খাপ খাইয়ে নেওয়ার সক্ষমতাও অনেক বেশি শক্তিশালী হবে।
+
+এটি আজকে তারিখ দিয়ে নতুন ব্লগ পোস্ট হিসেবে এড করো`,
+    },
+  },
+  {
     id: 1,
     date: "2024-09-26",
-    image: "/blog/blog-government.png",
-    featured: true,
+    featured: false,
     en: {
       title: "Why Do Government Services Feel So Slow?",
       excerpt:
         "Exploring the latest features and improvements introduced in Next.js 14.",
+      image: "/blog/blog-government.png",
+
       readTime: "12 min read",
       category: "Public Policy",
       content: `
@@ -464,6 +594,8 @@ I'd love to hear your thoughts on this topic!
     bn: {
       title: "সরকারি সেবাগুলো কেন এত ধীর মনে হয়?",
       excerpt: "কিছু ",
+      image: "/blog/blog-government.png",
+
       readTime: "১২ মিনিটের পাঠ",
       category: "পাবলিক পলিসি",
       content: `
@@ -902,9 +1034,8 @@ I'd love to hear your thoughts on this topic!
     },
   },
   {
-    id: 2,
+    id: 6,
     date: "2026-09-27",
-    image: "/images/blog/react-roadmap.jpg",
     featured: false,
 
     en: {
@@ -913,6 +1044,7 @@ I'd love to hear your thoughts on this topic!
 
       excerpt:
         "A structured look at my React learning journey—from Hooks and event handling to state management, routing, build processes, styling libraries, and production development.",
+      image: "/images/blog/react-roadmap.jpg",
 
       category: "React & Frontend Development",
 
@@ -1458,10 +1590,9 @@ Deployment</code></pre>
     bn: {
       title:
         "আমার React শেখার রোডম্যাপ: Hooks থেকে Routing, State Management এবং Production পর্যন্ত",
-
       excerpt:
         "Hooks, Event Handling থেকে শুরু করে State Management, Routing, Styling, Build Process এবং Production Development পর্যন্ত আমার React শেখার একটি structured roadmap।",
-
+      image: "/images/blog/react-roadmap.jpg",
       category: "React ও Frontend Development",
 
       readTime: "১০ মিনিট",
