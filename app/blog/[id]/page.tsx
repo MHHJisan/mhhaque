@@ -89,28 +89,49 @@ export default function BlogPostPage({
   };
 
   return (
-    <main className="min-h-screen">
-      {/* Back button */}
+    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 opacity-60"
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 bg-linear-to-br from-indigo-100 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" />
+        <div className="bg-grid-slate absolute inset-0 mix-blend-multiply dark:opacity-40" />
+      </div>
+
+      {/* Back button and language toggle */}
       <div className="container mx-auto px-4 pt-8">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900"
-        >
-          <FiArrowLeft />
-          Back to Blog
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+          >
+            <FiArrowLeft className="h-4 w-4" />
+            Back to Blog
+          </Link>
+
+          <button
+            type="button"
+            onClick={() =>
+              setLanguage((current) => (current === "en" ? "bn" : "en"))
+            }
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
+          >
+            <FiGlobe className="h-4 w-4" />
+            {language === "en" ? "বাংলা" : "English"}
+          </button>
+        </div>
       </div>
 
       {/* Article */}
       <article className="container mx-auto max-w-4xl px-4 py-8">
         {/* Featured image */}
         <div className="relative w-full h-[400px] mb-8 rounded-xl overflow-hidden">
-          {/* <Image
-            src={post.image}
+          <Image
+            src={content.image}
             alt={content.title}
             fill
             className="object-cover"
-          /> */}
+          />
         </div>
 
         {/* Category */}
@@ -130,10 +151,12 @@ export default function BlogPostPage({
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">{content.title}</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-slate-900 dark:text-white">
+          {content.title}
+        </h1>
 
         {/* Meta information */}
-        <div className="flex flex-wrap items-center gap-5 text-gray-500 mb-8">
+        <div className="flex flex-wrap items-center gap-5 text-slate-500 dark:text-slate-400 mb-8">
           <span className="flex items-center gap-2">
             <FiCalendar />
             {post.date}
@@ -148,25 +171,16 @@ export default function BlogPostPage({
             <FiEye />
             {viewCount} readers
           </span>
-
-          <button
-            type="button"
-            onClick={() =>
-              setLanguage((current) => (current === "en" ? "bn" : "en"))
-            }
-            className="flex items-center gap-2"
-          >
-            <FiGlobe />
-            {language === "en" ? "বাংলা" : "English"}
-          </button>
         </div>
 
         {/* Excerpt */}
-        <p className="text-xl text-gray-600 mb-8">{content.excerpt}</p>
+        <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">
+          {content.excerpt}
+        </p>
 
         {/* Article content */}
         <div
-          className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-gray-700 prose-strong:text-slate-900 dark:prose-p:text-gray-300 dark:prose-strong:text-white"
+          className="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-slate-700 prose-strong:text-slate-900 dark:prose-p:text-slate-300 dark:prose-strong:text-white"
           dangerouslySetInnerHTML={{
             __html: content.content,
           }}

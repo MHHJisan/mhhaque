@@ -594,10 +594,9 @@ I'd love to hear your thoughts on this topic!
     bn: {
       title: "সরকারি সেবাগুলো কেন এত ধীর মনে হয়?",
       excerpt: "কিছু ",
-      image: "/blog/blog-government.png",
-
-      readTime: "১২ মিনিটের পাঠ",
       category: "পাবলিক পলিসি",
+      readTime: "১২ মিনিটের পাঠ",
+      image: "/blog/blog-government.png",
       content: `
 সরকারি সেবাগুলো কেন এত ধীর মনে হয়?
 বাংলাদেশের পাবলিক সেক্টরে চাকরির নিরাপত্তা কি একটি প্রণোদনা সমস্যা তৈরি করছে?
