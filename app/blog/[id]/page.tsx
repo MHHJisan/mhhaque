@@ -130,6 +130,8 @@ export default function BlogPostPage({
             src={content.image}
             alt={content.title}
             fill
+            sizes="(max-width: 896px) calc(100vw - 2rem), 864px"
+            loading="eager"
             className="object-cover"
           />
         </div>
@@ -188,7 +190,7 @@ export default function BlogPostPage({
 
         {/* CTA for teaching post */}
         {postId === 2 && (
-          <div className="mt-12 rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 p-8 dark:from-green-900/20 dark:to-emerald-900/20">
+          <div className="mt-12 rounded-2xl bg-linear-to-r from-green-50 to-emerald-50 p-8 dark:from-green-900/20 dark:to-emerald-900/20">
             <h3 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
               {language === "en"
                 ? "I'd love to hear your thoughts on teaching and learning!"
@@ -217,10 +219,12 @@ export default function BlogPostPage({
 
         {/* Disqus */}
         <div className="mt-12">
-          <DiscussionEmbed
-            shortname="mhhaque-github-io"
-            config={disqusConfig}
-          />
+          <div className="disqus-embed">
+            <DiscussionEmbed
+              shortname="mhhaque-github-io"
+              config={disqusConfig}
+            />
+          </div>
         </div>
       </article>
     </main>
