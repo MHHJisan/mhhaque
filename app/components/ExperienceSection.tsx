@@ -18,6 +18,15 @@ function parseStartYear(period: string): number {
 }
 const experiences: Experience[] = [
   {
+    id: 11,
+    period: "01/2026 — Present",
+    company: "Future Fibre Technologies",
+    role: "Software Engineer",
+    description:
+      "Based in Australia, working contractually as a project-based employee.",
+    achievements: [],
+  },
+  {
     id: 1,
     period: "06/2022 — Present",
     company: "TechRA Learning Center",
