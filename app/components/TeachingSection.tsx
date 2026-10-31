@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { FiBook, FiUsers, FiCalendar, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import {
+  FiBook,
+  FiUsers,
+  FiCalendar,
+  FiChevronDown,
+  FiChevronUp,
+} from "react-icons/fi";
 
 type Course = {
   id: number;
@@ -10,7 +16,7 @@ type Course = {
   institution: string;
   period: string;
   description: string;
-  students: number;
+  students?: number;
   curriculum: string[];
   images: string[];
 };
@@ -21,7 +27,8 @@ const courses: Course[] = [
     title: "Web Development Fundamentals",
     institution: "Dhaka University",
     period: "Spring 2024",
-    description: "Comprehensive introduction to modern web development covering HTML, CSS, JavaScript, and responsive design principles.",
+    description:
+      "Comprehensive introduction to modern web development covering HTML, CSS, JavaScript, and responsive design principles.",
     students: 45,
     curriculum: [
       "HTML5 Semantic Structure",
@@ -31,14 +38,15 @@ const courses: Course[] = [
       "Git & Version Control",
       "Project-based Learning",
     ],
-    images: ["/teaching/web-class-1.jpg", "/teaching/web-class-2.jpg"],
+    images: ["/teaching/web-class-1.jpg", "/teaching/web-class-2.png"],
   },
   {
     id: 2,
     title: "React & Modern Frontend",
     institution: "BUET",
     period: "Fall 2023",
-    description: "Advanced frontend development course focusing on React ecosystem, state management, and modern JavaScript frameworks.",
+    description:
+      "Advanced frontend development course focusing on React ecosystem, state management, and modern JavaScript frameworks.",
     students: 38,
     curriculum: [
       "React Fundamentals & Hooks",
@@ -50,12 +58,14 @@ const courses: Course[] = [
     ],
     images: ["/teaching/react-class-1.jpg", "/teaching/react-class-2.jpg"],
   },
+  /*
   {
     id: 3,
     title: "Database Design & SQL",
     institution: "United International University",
     period: "Summer 2023",
-    description: "Practical database design course covering relational databases, SQL optimization, and modern database technologies.",
+    description:
+      "Practical database design course covering relational databases, SQL optimization, and modern database technologies.",
     students: 52,
     curriculum: [
       "Database Normalization",
@@ -66,6 +76,26 @@ const courses: Course[] = [
       "Real-world Case Studies",
     ],
     images: ["/teaching/db-class-1.jpg", "/teaching/db-class-2.jpg"],
+  },
+  */
+  {
+    id: 4,
+    title: "Programming for High School Students",
+    institution: "TechRA Learning Center",
+    period: "2022 — Present",
+    description:
+      "An introductory, hands-on programming course that helps high school students build problem-solving skills and learn programming fundamentals with Java.",
+    curriculum: [
+      "Problem-Solving and Computational Thinking",
+      "Java Syntax, Variables, and Data Types",
+      "Input, Output, and Expressions",
+      "Conditional Statements and Loops",
+      "Methods and Code Reuse",
+      "Arrays and Basic Data Structures",
+      "Debugging and Writing Readable Code",
+      "Small, Project-Based Programming Exercises",
+    ],
+    images: ["/teaching/skill_dev04.png"],
   },
 ];
 
@@ -100,9 +130,10 @@ export default function TeachingSection() {
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            Teaching has been a cornerstone of my professional journey. I've had the privilege
-            of mentoring students, designing curricula, and helping shape the next generation
-            of developers through hands-on, practical learning experiences.
+            Teaching has been a cornerstone of my professional journey. I've had
+            the privilege of mentoring students, designing curricula, and
+            helping shape the next generation of developers through hands-on,
+            practical learning experiences.
           </p>
         </div>
 
@@ -126,10 +157,12 @@ export default function TeachingSection() {
                         <FiCalendar className="h-3 w-3" />
                         {course.period}
                       </span>
-                      <span className="inline-flex items-center gap-1">
-                        <FiUsers className="h-3 w-3" />
-                        {course.students} students
-                      </span>
+                      {course.students !== undefined && (
+                        <span className="inline-flex items-center gap-1">
+                          <FiUsers className="h-3 w-3" />
+                          {course.students} students
+                        </span>
+                      )}
                     </div>
                   </div>
                   <div className="h-10 w-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center">
@@ -179,15 +212,21 @@ export default function TeachingSection() {
                     </h4>
                     <div className="grid grid-cols-2 gap-2">
                       {course.images.map((image, index) => (
-                        <div
+                        <button
+                          type="button"
                           key={index}
-                          className="relative aspect-video rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800 cursor-pointer hover:opacity-80 transition"
+                          className="relative aspect-video overflow-hidden rounded-lg bg-slate-200 transition hover:opacity-80 dark:bg-slate-800"
                           onClick={() => openLightbox(image)}
+                          aria-label={`View ${course.title} classroom photo ${index + 1}`}
                         >
-                          <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500">
-                            <span className="text-xs">Image {index + 1}</span>
-                          </div>
-                        </div>
+                          <Image
+                            src={image}
+                            alt={`${course.title} classroom photo ${index + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 50vw, 33vw"
+                            className="object-cover"
+                          />
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -207,15 +246,28 @@ export default function TeachingSection() {
                 onClick={() => setLightboxOpen(false)}
                 className="absolute -top-12 right-0 text-white hover:text-slate-300 transition"
               >
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="h-8 w-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
-              <div className="relative aspect-video rounded-lg overflow-hidden bg-slate-900">
-                <div className="absolute inset-0 flex items-center justify-center text-white">
-                  <p className="text-center">Classroom Image</p>
-                  <p className="text-sm text-slate-400 mt-2">Add your images to: {lightboxImage}</p>
-                </div>
+              <div className="relative aspect-video overflow-hidden rounded-lg bg-slate-900">
+                <Image
+                  src={lightboxImage}
+                  alt="Classroom photo"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 896px"
+                  className="object-contain"
+                />
               </div>
             </div>
           </div>
